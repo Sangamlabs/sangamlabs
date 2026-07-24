@@ -141,31 +141,62 @@
 
 ## 🤖 AI Terminal
 
-```bash
-> booting_sharingan...
+<div align="center">
 
-██████████████████████████████████████ 100%
+<h2>👁️ MANGEKYŌ SHARINGAN SYSTEM 👁️</h2>
 
-✓ Mangekyō Sharingan Loaded
-✓ AI Neural Core Activated
-✓ Telegram Bot Engine Ready
-✓ MongoDB Connected
-✓ Cloud Runtime Ready
-✓ Python Environment Loaded
-✓ Susanoo Defense Online
-✓ Akatsuki Protocol Enabled
+<table>
+<tr>
+<td>
 
---------------------------------------
+<pre>
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│                    👁️  MANGEKYŌ SHARINGAN SYSTEM                             │
+│                                                                              │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│     ██╗████████╗ █████╗  ██████╗██╗  ██╗██╗██████╗ ██╗     ██╗   ██╗██████╗ │
+│     ██║╚══██╔══╝██╔══██╗██╔════╝██║  ██║██║██╔══██╗██║     ██║   ██║██╔══██╗│
+│     ██║   ██║   ███████║██║     ███████║██║██████╔╝██║     ██║   ██║██████╔╝│
+│     ██║   ██║   ██╔══██║██║     ██╔══██║██║██╔═══╝ ██║     ██║   ██║██╔══██╗│
+│     ██║   ██║   ██║  ██║╚██████╗██║  ██║██║██║     ███████╗╚██████╔╝██████╔╝│
+│     ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝     ╚══════╝ ╚═════╝ ╚═════╝ │
+│                                                                              │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  👨‍💻 ROLE        FRONTEND DEVELOPER                                           │
+│  👁️ CLAN        UCHIHA                                                       │
+│  ⚔️ RANK        S-CLASS                                                      │
+│  🤖 ENGINE      AI + TELEGRAM                                                │
+│  🌐 STATUS      ONLINE                                                       │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│ > booting_sharingan()                                                        │
+│                                                                              │
+│ ████████████████████████████████████████████████ 100%                        │
+│                                                                              │
+│ ✓ HTML5 Engine Loaded                                                        │
+│ ✓ CSS3 Renderer Loaded                                                       │
+│ ✓ JavaScript Runtime Ready                                                   │
+│ ✓ Responsive Layout Activated                                                │
+│ ✓ Git Connected                                                              │
+│ ✓ AI Neural Core Online                                                      │
+│ ✓ Sharingan Vision Enabled                                                   │
+│                                                                              │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ ❤️ UI DESIGN      ████████████████████ 100%                                  │
+│ ⚡ CSS ENGINE     ███████████████████░ 97%                                   │
+│ 📜 JAVASCRIPT     ██████████████████░░ 95%                                   │
+│ 🎨 RESPONSIVE     ████████████████████ 100%                                  │
+│ 🤖 AI INTERFACE   ███████████████████░ 96%                                   │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ MISSION : BUILD NEXT GENERATION USER INTERFACES                              │
+│ CODENAME: ITACHIPLUB                                                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+</pre>
 
-HEALTH     [████████████████████] 100%
-CHAKRA     [███████████████████░] 98%
-SUSANOO    [██████████████████░░] 96%
-AI CORE    [████████████████████] 100%
+</td>
+</tr>
+</table>
 
---------------------------------------
-
-STATUS  : ONLINE
-CLAN    : UCHIHA
-MISSION : BUILD THE STRONGEST BOT ECOSYSTEM
-
-Welcome back, Itachiplub.
+</div>
