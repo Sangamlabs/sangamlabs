@@ -1,613 +1,303 @@
 <!--
   ========================================================================
-  AKATSUKI / JARVIS CYBERPUNK DEVELOPER HUD (STANDALONE VECTOR SVG)
-  GitHub Profile README Compatible - 100% Native SVG SMIL Animations
-  ========================================================================
-  IMPROVEMENTS MADE:
-  1. REMOVED ALL CSS @keyframes / animation rules for 100% GitHub README & SVG img tag compatibility.
-  2. REPLACED WITH NATIVE SMIL ANIMATIONS (<animate>, <animateTransform>).
-  3. FIXED LOADING MATRIX: Added clipPath-constrained moving white glare shine that smoothly enters & exits without overflowing.
-  4. ENHANCED SKILL BARS: Added clipped moving sheen and gentle pulse to each individual capability bar.
-  5. CLEANED EARTH HUD: Reduced clutter around the Earth by ~25% to maximize focus on the 3D Holographic globe.
-  6. OPTIMIZED SVG: Consolidated filter defs, clipPaths, and reused gradients for high rendering performance.
+  J.A.R.V.I.S // OS CORE - UNIFIED CYBERPUNK TERMINAL & HOLOGRAPHIC EARTH
+  100% GitHub README & Camo Proxy Compatible - SVG 1.1 Compliant
   ========================================================================
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%" style="background-color: #050505; font-family: 'Courier New', Courier, monospace, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%">
   <defs>
-    <!-- GLOW FILTERS -->
-    <filter id="hudGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
+    <!-- RADIAL GLOW GRADIENTS -->
+    <radialGradient id="ambientGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff0033" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#ff0033" stop-opacity="0" />
+    </radialGradient>
 
-    <filter id="strongGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="8" result="blur1" />
-      <feGaussianBlur stdDeviation="3" result="blur2" />
-      <feMerge>
-        <feMergeNode in="blur1" />
-        <feMergeNode in="blur2" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="40%" stop-color="#ff2b55" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ff0033" stop-opacity="0" />
+    </radialGradient>
 
-    <!-- GRADIENTS -->
+    <radialGradient id="radarGrad" cx="0%" cy="0%" r="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#ff0033" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#ff0033" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- LINEAR GRADIENTS -->
     <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#050505" />
-      <stop offset="50%" stop-color="#080204" />
-      <stop offset="100%" stop-color="#050505" />
+      <stop offset="0%" stop-color="#050203" />
+      <stop offset="50%" stop-color="#070308" />
+      <stop offset="100%" stop-color="#050203" />
     </linearGradient>
 
-    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ff0000" stop-opacity="0.8" />
-      <stop offset="50%" stop-color="#ff5555" stop-opacity="1" />
-      <stop offset="100%" stop-color="#ff0000" stop-opacity="0.8" />
+    <linearGradient id="glassFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0b0307" stop-opacity="0.92" />
+      <stop offset="100%" stop-color="#030104" stop-opacity="0.96" />
     </linearGradient>
 
-    <linearGradient id="glassFill" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff0000" stop-opacity="0.08" />
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.75" />
-    </linearGradient>
-
-    <linearGradient id="scanlineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ff0000" stop-opacity="0" />
-      <stop offset="50%" stop-color="#ff2b2b" stop-opacity="0.25" />
-      <stop offset="100%" stop-color="#ff0000" stop-opacity="0" />
-    </linearGradient>
-
-    <linearGradient id="beamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#ff0000" stop-opacity="0.6" />
-      <stop offset="50%" stop-color="#ff2b2b" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#ff0000" stop-opacity="0.0" />
+    <linearGradient id="loadingBarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff0033" />
+      <stop offset="70%" stop-color="#ff2b55" />
+      <stop offset="100%" stop-color="#ffffff" />
     </linearGradient>
 
     <!-- PATTERNS -->
-    <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#ff0000" stroke-width="0.5" stroke-opacity="0.07" />
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ff0033" stroke-width="0.5" stroke-opacity="0.08" />
     </pattern>
 
-    <pattern id="dotGrid" width="16" height="16" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1" fill="#ff0000" fill-opacity="0.12" />
+    <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#ff0033" fill-opacity="0.12" />
     </pattern>
 
-    <!-- CLIP PATHS FOR LOADING & SKILL BARS SHINE -->
-    <clipPath id="mainLoadingClip">
-      <rect x="2" y="2" width="395" height="14" rx="2" />
+    <!-- CLIPPINGS -->
+    <clipPath id="loadingBarClip">
+      <rect x="72" y="422" width="576" height="18" rx="3" />
     </clipPath>
 
-    <clipPath id="skillClip1">
-      <rect x="111" y="3" width="225" height="8" rx="1" />
-    </clipPath>
-    <clipPath id="skillClip2">
-      <rect x="111" y="21" width="235" height="8" rx="1" />
-    </clipPath>
-    <clipPath id="skillClip3">
-      <rect x="111" y="39" width="230" height="8" rx="1" />
-    </clipPath>
-    <clipPath id="skillClip4">
-      <rect x="111" y="57" width="216" height="8" rx="1" />
-    </clipPath>
-    <clipPath id="skillClip5">
-      <rect x="111" y="75" width="204" height="8" rx="1" />
-    </clipPath>
-    <clipPath id="skillClip6">
-      <rect x="111" y="93" width="196" height="8" rx="1" />
+    <clipPath id="earthGlobeClip">
+      <circle cx="930" cy="350" r="148" />
     </clipPath>
   </defs>
 
-  <!-- BASE BACKGROUND -->
+  <!-- BACKGROUND CANVAS -->
   <rect width="1200" height="700" fill="url(#bgGradient)" />
   <rect width="1200" height="700" fill="url(#gridPattern)" />
-  <rect width="1200" height="700" fill="url(#dotGrid)" opacity="0.6" />
+  <rect width="1200" height="700" fill="url(#dotGrid)" opacity="0.4" />
 
-  <!-- AMBIENT RED GLOW BEHIND EARTH PROJECTOR -->
-  <circle cx="830" cy="380" r="260" fill="#ff0000" opacity="0.08" filter="url(#strongGlow)" />
-  <circle cx="830" cy="590" r="140" fill="#ff2b2b" opacity="0.1" filter="url(#hudGlow)" />
-
-  <!-- SUBTLE BINARY RAIN / TECH BACKGROUND PARTICLES -->
+  <!-- SUBTLE FLOATING PARTICLES -->
   
-  <g opacity="0.18" fill="#55ff55" font-size="9" font-family="monospace">
-    <text x="80" y="100">01010100 01000101 01010010 01001101</text>
-    <text x="240" y="180">01000001 01001011 01000001 01010100</text>
-    <text x="120" y="280">11001010 00110101 11010011 01010101</text>
-    <text x="310" y="380">01010011 01011001 01010011 01010100</text>
-    <text x="60" y="480">10101010 11110000 00001111 01010101</text>
-    <text x="220" y="580">01000011 01001111 01010010 01000101</text>
+  <g opacity="0.15" fill="#00ff66" font-size="9" font-family="monospace, sans-serif">
+    <text x="60" y="80">01010100 01000101 01010010 01001101</text>
+    <text x="200" y="670">11001010 00110101 11010011 01010101</text>
+    <text x="920" y="660">JARVIS_OS // KERNEL_OK</text>
   </g>
   
 
-  <!-- MAIN HUD TERMINAL GLASS FRAME WITH NATIVE PULSE -->
-  <g id="MainFrame" opacity="0.85">
-    <animate attributeName="opacity" values="0.75;1;0.75" dur="3.0s" repeatCount="indefinite" />
-
-    <!-- GLASS BACKGROUND -->
-    <rect x="20" y="20" width="1160" height="660" rx="16" fill="url(#glassFill)" stroke="#ff0000" stroke-width="1.5" stroke-opacity="0.4" />
-
-    <!-- SEGMENTED HUD BORDERS & CORNER CUTOUTS -->
-    <path d="M 20 60 L 20 35 Q 20 20 35 20 L 80 20" fill="none" stroke="#ff0000" stroke-width="3" filter="url(#hudGlow)" />
-    <path d="M 1120 20 L 1165 20 Q 1180 20 1180 35 L 1180 60" fill="none" stroke="#ff0000" stroke-width="3" filter="url(#hudGlow)" />
-    <path d="M 1180 640 L 1180 665 Q 1180 680 1165 680 L 1120 680" fill="none" stroke="#ff0000" stroke-width="3" filter="url(#hudGlow)" />
-    <path d="M 80 680 L 35 680 Q 20 680 20 665 L 20 640" fill="none" stroke="#ff0000" stroke-width="3" filter="url(#hudGlow)" />
-
-    <!-- HEXAGON / CORNER TECH ACCENTS -->
-    <!-- Top-Left Hex Marker -->
-    <polygon points="30,28 42,28 48,34 42,40 30,40 24,34" fill="#ff0000" fill-opacity="0.3" stroke="#ff0000" stroke-width="1" />
-    <text x="56" y="38" fill="#ff5555" font-size="10" font-weight="bold" letter-spacing="1">AKATSUKI-HUD // OS_V5.19</text>
-
-    <!-- Top-Right Status Badge -->
-    <rect x="1040" y="28" width="120" height="18" rx="4" fill="#ff0000" fill-opacity="0.15" stroke="#ff0000" stroke-width="1" />
-    <circle cx="1052" cy="37" r="4" fill="#55ff55">
-      <animate attributeName="opacity" values="1;0;1" dur="1s" keyTimes="0;0.5;1" calcMode="discrete" repeatCount="indefinite" />
-    </circle>
-    <text x="1062" y="40" fill="#ffffff" font-size="9" font-weight="bold" letter-spacing="1">SEC: OMEGA [OK]</text>
-
-    <!-- Bottom Corner Telemetry -->
-    <text x="32" y="668" fill="#ff0000" font-size="9" opacity="0.7">LATENCY: 0.12ms | MEM: 64% | SHADER: FULL</text>
-    <text x="1010" y="668" fill="#ff0000" font-size="9" opacity="0.7">FRAME: 120 FPS | SYNC: 100%</text>
-
-    <!-- CIRCUIT TRACES ON FRAME EDGE -->
-    <path d="M 280 20 L 320 20 L 335 32 L 450 32" fill="none" stroke="#ff0000" stroke-width="1" stroke-dasharray="4 4" opacity="0.6" />
-    <circle cx="450" cy="32" r="2.5" fill="#ff2b2b" />
-
-    <path d="M 750 20 L 820 20 L 835 32 L 950 32" fill="none" stroke="#ff0000" stroke-width="1" stroke-dasharray="4 4" opacity="0.6" />
-    <circle cx="950" cy="32" r="2.5" fill="#ff2b2b" />
-  </g>
-
-  <!-- MOVING SCANLINE EFFECT (NATIVE SMIL) -->
+  <!-- SCANLINE ANIMATION -->
   
-  <rect x="20" y="20" width="1160" height="40" fill="url(#scanlineGrad)" opacity="0.7" pointer-events="none">
-    <animate attributeName="y" values="-40;680" dur="4.0s" repeatCount="indefinite" />
+  <rect x="0" y="0" width="1200" height="3" fill="#ff0033" opacity="0.15">
+    <animateTransform attributeName="transform" type="translate" from="0 -10" to="0 710" dur="5.0s" repeatCount="indefinite" />
   </rect>
   
 
   <!-- ========================================================= -->
-  <!-- LEFT PANEL: DEVELOPER TERMINAL & SKILL MATRIX & MISSION   -->
+  <!-- UNIFIED LARGE J.A.R.V.I.S. TERMINAL WINDOW (75% SVG AREA)   -->
   <!-- ========================================================= -->
-
-  <!-- TOP LEFT TERMINAL BOX -->
-  <g id="TerminalPanel" transform="translate(45, 50)">
-    <!-- Panel Header -->
-    <rect x="0" y="0" width="410" height="24" rx="4" fill="#ff0000" fill-opacity="0.2" stroke="#ff0000" stroke-width="1" />
-    <circle cx="14" cy="12" r="3.5" fill="#ff4444" />
-    <circle cx="26" cy="12" r="3.5" fill="#ffbb33" />
-    <circle cx="38" cy="12" r="3.5" fill="#00cc66" />
-    <text x="52" y="16" fill="#ffffff" font-size="10" font-weight="bold" letter-spacing="1">DEVELOPER TERMINAL // bash_zsh</text>
-
-    <!-- Terminal Content Area -->
-    <rect x="0" y="24" width="410" height="150" rx="2" fill="#000000" fill-opacity="0.65" stroke="#ff0000" stroke-width="0.8" stroke-opacity="0.4" />
+  <g id="JarvisTerminal" font-family="monospace, sans-serif">
+    <!-- Outer Main Terminal Box -->
+    <rect x="40" y="40" width="1120" height="620" rx="10" fill="url(#glassFill)" stroke="#ff0033" stroke-width="1.5" stroke-opacity="0.8" />
     
-    <!-- Terminal Text Lines -->
-    <g font-family="monospace" font-size="11">
-      <text x="12" y="44" fill="#55ff55">root@akatsuki-os:~$ ./init_kernel.sh --verbose</text>
-      <text x="12" y="62" fill="#ff5555">[OK] Kernel 5.19-CYBER loaded into high memory</text>
-      <text x="12" y="78" fill="#55ff55">[OK] Mount /dev/nvme01a (System Root) ... PASSED</text>
-      <text x="12" y="94" fill="#ff5555">[OK] Firewall: ACTIVE [Akatsuki Protocol]</text>
-      <text x="12" y="110" fill="#ffffff">[SYS] Neural Link: SYNCED 99.8% [LOW LATENCY]</text>
-      <text x="12" y="126" fill="#55ff55">[SEC] Auth Token verified: ITACHI_AKATSUKI_01</text>
-      
-      <!-- Live Prompt Line -->
-      <text x="12" y="146" fill="#55ff55">dev@jarvis-hud:~$ <tspan fill="#ffffff">build --prod --target=3d-hologram</tspan></text>
-      <rect x="332" y="136" width="7" height="13" fill="#55ff55">
-        <animate attributeName="opacity" values="1;0;1" dur="1s" keyTimes="0;0.5;1" calcMode="discrete" repeatCount="indefinite" />
-      </rect>
-    </g>
-  </g>
+    <!-- Outer Glow Frame Accent Corner Brackets -->
+    <path d="M 40 80 L 40 50 Q 40 40 50 40 L 90 40" fill="none" stroke="#ffffff" stroke-width="2" />
+    <path d="M 1110 40 L 1150 40 Q 1160 40 1160 50 L 1160 80" fill="none" stroke="#ffffff" stroke-width="2" />
+    <path d="M 1160 620 L 1160 650 Q 1160 660 1150 660 L 1110 660" fill="none" stroke="#ffffff" stroke-width="2" />
+    <path d="M 90 660 L 50 660 Q 40 660 40 650 L 40 620" fill="none" stroke="#ffffff" stroke-width="2" />
 
-  <!-- CENTER LEFT LOADING MATRIX & SKILLS -->
-  <g id="SkillMatrixPanel" transform="translate(45, 240)">
-    <!-- Section Header -->
-    <text x="0" y="12" fill="#ff5555" font-size="11" font-weight="bold" letter-spacing="1.5">LOADING MATRIX // SYSTEM CAPABILITIES</text>
-    <line x1="0" y1="18" x2="410" y2="18" stroke="#ff0000" stroke-width="1" stroke-opacity="0.5" />
+    <!-- Terminal Top Control Bar -->
+    <path d="M 40 40 L 1160 40 L 1160 76 L 40 76 Z" fill="#ff0033" fill-opacity="0.1" />
+    <line x1="40" y1="76" x2="1160" y2="76" stroke="#ff0033" stroke-width="1" opacity="0.6" />
 
-    <!-- Main Loading Bar with Clipped Moving White Glare Shine -->
-    <g transform="translate(0, 26)">
-      <rect x="0" y="0" width="410" height="18" rx="3" fill="#000000" stroke="#ff0000" stroke-width="1" />
-      
-      <!-- Clipped Loading Bar Area -->
-      <g clip-path="url(#mainLoadingClip)">
-        <rect x="2" y="2" width="395" height="14" rx="2" fill="url(#primaryGrad)">
-          <animate attributeName="opacity" values="0.85;1;0.85" dur="2s" repeatCount="indefinite" />
-        </rect>
-        
-        <!-- Moving White Shine Polygon (Clipped safely inside bar) -->
-        <polygon points="0,2 35,2 15,16 -20,16" fill="#ffffff" opacity="0.65" filter="url(#hudGlow)">
-          <animateTransform attributeName="transform" type="translate" from="-60 0" to="440 0" dur="2.5s" repeatCount="indefinite" />
-        </polygon>
+    <!-- Window Controls & Status Indicators -->
+    <circle cx="65" cy="58" r="4" fill="#ff4444" />
+    <circle cx="80" cy="58" r="4" fill="#ffbb33" />
+    <circle cx="95" cy="58" r="4" fill="#00ff66" />
 
-        <line x1="0" y1="9" x2="410" y2="9" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="10 15" opacity="0.6" />
-      </g>
-      
-      <text x="350" y="13" fill="#ffffff" font-size="10" font-weight="bold">98.4%</text>
-      <text x="8" y="12" fill="#000000" font-size="9" font-weight="bold" letter-spacing="1">SYNAPSE OVERDRIVE ACTIVE</text>
-    </g>
+    <!-- Terminal Title -->
+    <text x="120" y="62" fill="#ffffff" font-size="12" font-weight="bold" letter-spacing="2">J.A.R.V.I.S // OS CORE</text>
+    <text x="320" y="62" fill="#ff6688" font-size="10" opacity="0.8">[ v4.0.8 ARCHITECTURE ]</text>
 
-    <!-- SKILL BARS LIST WITH CLIPPED MOVING SHINE -->
-    <g transform="translate(0, 56)" font-family="monospace" font-size="10">
-      <!-- Skill 1: UI Design -->
-      <text x="0" y="10" fill="#ffffff">UI DESIGN</text>
-      <rect x="110" y="2" width="240" height="10" rx="2" fill="#110508" stroke="#ff0000" stroke-width="0.5" />
-      <g clip-path="url(#skillClip1)">
-        <rect x="111" y="3" width="225" height="8" rx="1" fill="#ff0000" opacity="0.85">
-          <animate attributeName="opacity" values="0.75;0.95;0.75" dur="3s" repeatCount="indefinite" />
-        </rect>
-        <polygon points="90,3 110,3 125,11 105,11" fill="#ffffff" opacity="0.6">
-          <animateTransform attributeName="transform" type="translate" from="0 0" to="280 0" dur="3.2s" repeatCount="indefinite" />
-        </polygon>
-      </g>
-      <text x="360" y="10" fill="#55ff55">94%</text>
+    <!-- Top Right Status Pill -->
+    <rect x="940" y="48" width="200" height="20" rx="4" fill="#000000" fill-opacity="0.6" stroke="#ff0033" stroke-width="0.8" />
+    <circle cx="955" cy="58" r="3" fill="#00ff66">
+      <animate attributeName="opacity" values="1;0.2;1" dur="2.5s" repeatCount="indefinite" />
+    </circle>
+    <text x="968" y="62" fill="#00ff66" font-size="10" font-weight="bold">SYSTEM READY // 100%</text>
 
-      <!-- Skill 2: CSS / TailWind -->
-      <text x="0" y="28" fill="#ffffff">CSS / SHADERS</text>
-      <rect x="110" y="20" width="240" height="10" rx="2" fill="#110508" stroke="#ff0000" stroke-width="0.5" />
-      <g clip-path="url(#skillClip2)">
-        <rect x="111" y="21" width="235" height="8" rx="1" fill="#ff5555" opacity="0.9">
-          <animate attributeName="opacity" values="0.8;1;0.8" dur="3.5s" repeatCount="indefinite" />
-        </rect>
-        <polygon points="90,21 110,21 125,29 105,29" fill="#ffffff" opacity="0.6">
-          <animateTransform attributeName="transform" type="translate" from="0 0" to="280 0" dur="3.6s" repeatCount="indefinite" />
-        </polygon>
-      </g>
-      <text x="360" y="28" fill="#55ff55">98%</text>
+    <!-- Vertically Separating Divider Line between Left Console & Right Earth Module -->
+    <line x1="720" y1="76" x2="720" y2="660" stroke="#ff0033" stroke-width="1" stroke-dasharray="4 4" opacity="0.35" />
 
-      <!-- Skill 3: JavaScript / TypeScript -->
-      <text x="0" y="46" fill="#ffffff">JAVASCRIPT/TS</text>
-      <rect x="110" y="38" width="240" height="10" rx="2" fill="#110508" stroke="#ff0000" stroke-width="0.5" />
-      <g clip-path="url(#skillClip3)">
-        <rect x="111" y="39" width="230" height="8" rx="1" fill="#ff0000" opacity="0.85">
-          <animate attributeName="opacity" values="0.75;0.95;0.75" dur="2.8s" repeatCount="indefinite" />
-        </rect>
-        <polygon points="90,39 110,39 125,47 105,47" fill="#ffffff" opacity="0.6">
-          <animateTransform attributeName="transform" type="translate" from="0 0" to="280 0" dur="3.0s" repeatCount="indefinite" />
-        </polygon>
-      </g>
-      <text x="360" y="46" fill="#55ff55">96%</text>
+    <!-- ========================================================= -->
+    <!-- LEFT CONSOLE: BOOT SEQUENCE & KERNEL CALIBRATION           -->
+    <!-- ========================================================= -->
+    <g id="ConsoleLog" transform="translate(70, 100)">
+      <!-- Console Section Header -->
+      <text x="0" y="15" fill="#ff6688" font-size="11" font-weight="bold" letter-spacing="1.5">// SYSTEM INITIALIZATION LOG</text>
+      <line x1="0" y1="24" x2="610" y2="24" stroke="#ff0033" stroke-width="0.8" opacity="0.4" />
 
-      <!-- Skill 4: Python / AI -->
-      <text x="0" y="64" fill="#ffffff">PYTHON / AI</text>
-      <rect x="110" y="56" width="240" height="10" rx="2" fill="#110508" stroke="#ff0000" stroke-width="0.5" />
-      <g clip-path="url(#skillClip4)">
-        <rect x="111" y="57" width="216" height="8" rx="1" fill="#ff5555" opacity="0.85">
-          <animate attributeName="opacity" values="0.8;1;0.8" dur="3.2s" repeatCount="indefinite" />
-        </rect>
-        <polygon points="90,57 110,57 125,65 105,65" fill="#ffffff" opacity="0.6">
-          <animateTransform attributeName="transform" type="translate" from="0 0" to="280 0" dur="3.4s" repeatCount="indefinite" />
-        </polygon>
-      </g>
-      <text x="360" y="64" fill="#55ff55">90%</text>
-
-      <!-- Skill 5: Cloud / Docker -->
-      <text x="0" y="82" fill="#ffffff">CLOUD / DOCKER</text>
-      <rect x="110" y="74" width="240" height="10" rx="2" fill="#110508" stroke="#ff0000" stroke-width="0.5" />
-      <g clip-path="url(#skillClip5)">
-        <rect x="111" y="75" width="204" height="8" rx="1" fill="#ff0000" opacity="0.8">
-          <animate attributeName="opacity" values="0.75;0.95;0.75" dur="3.4s" repeatCount="indefinite" />
-        </rect>
-        <polygon points="90,75 110,75 125,83 105,83" fill="#ffffff" opacity="0.6">
-          <animateTransform attributeName="transform" type="translate" from="0 0" to="280 0" dur="3.1s" repeatCount="indefinite" />
-        </polygon>
-      </g>
-      <text x="360" y="82" fill="#55ff55">85%</text>
-
-      <!-- Skill 6: MongoDB / SQL -->
-      <text x="0" y="100" fill="#ffffff">MONGODB / SQL</text>
-      <rect x="110" y="92" width="240" height="10" rx="2" fill="#110508" stroke="#ff0000" stroke-width="0.5" />
-      <g clip-path="url(#skillClip6)">
-        <rect x="111" y="93" width="196" height="8" rx="1" fill="#ff5555" opacity="0.8">
-          <animate attributeName="opacity" values="0.75;0.95;0.75" dur="3.1s" repeatCount="indefinite" />
-        </rect>
-        <polygon points="90,93 110,93 125,101 105,101" fill="#ffffff" opacity="0.6">
-          <animateTransform attributeName="transform" type="translate" from="0 0" to="280 0" dur="3.5s" repeatCount="indefinite" />
-        </polygon>
-      </g>
-      <text x="360" y="100" fill="#55ff55">82%</text>
-    </g>
-  </g>
-
-  <!-- BOTTOM LEFT MISSION & DEV LOGS -->
-  <g id="MissionPanel" transform="translate(45, 470)">
-    <!-- Glass box container with angular cut corners -->
-    <path d="M 0 0 L 390 0 L 410 20 L 410 180 L 20 180 L 0 160 Z" fill="#030002" fill-opacity="0.75" stroke="#ff0000" stroke-width="1" />
-    
-    <!-- Title -->
-    <g transform="translate(15, 22)">
-      <text x="0" y="0" fill="#ff0000" font-size="12" font-weight="extrabold" letter-spacing="1" filter="url(#hudGlow)">MISSION: BUILD NEXT GEN USER INTERFACES</text>
-      <text x="0" y="16" fill="#ff5555" font-size="10" font-weight="bold" letter-spacing="2">CODENAME: PROJECT AKATSUKI - PHASE IV</text>
-      <line x1="0" y1="22" x2="380" y2="22" stroke="#ff0000" stroke-width="0.8" opacity="0.5" />
-    </g>
-
-    <!-- Developer Log & Git Commits -->
-    <g transform="translate(15, 60)" font-family="monospace" font-size="10">
-      <text x="0" y="0" fill="#ffffff" font-weight="bold">// GIT COMMITS & LOGS</text>
-      
-      <g transform="translate(0, 16)">
-        <circle cx="4" cy="0" r="3" fill="#55ff55" />
-        <text x="14" y="3" fill="#55ff55">[feat/hud] v4.2.0-rc3 pushed to main</text>
-        
-        <circle cx="4" cy="18" r="3" fill="#ff0000" />
-        <text x="14" y="21" fill="#ffffff">[fix/shd] 3D Hologram projection matrix aligned</text>
-        
-        <circle cx="4" cy="36" r="3" fill="#ff5555" />
-        <text x="14" y="39" fill="#ff5555">[opt/gpu] WebGL shader pipeline zero latency</text>
-
-        <circle cx="4" cy="54" r="3" fill="#55ff55" />
-        <text x="14" y="57" fill="#55ff55">[sys/ai] Jarvis neural link synced (408.2km)</text>
-      </g>
-    </g>
-
-    <!-- Small Terminal Output Status -->
-    <g transform="translate(15, 155)" font-family="monospace" font-size="9">
-      <rect x="0" y="0" width="380" height="16" fill="#ff0000" fill-opacity="0.1" rx="2" />
-      <text x="8" y="11" fill="#55ff55">> STATUS: ALL MODULES NOMINAL // READY FOR DEPLOYMENT</text>
-    </g>
-  </g>
-
-  <!-- ========================================================= -->
-  <!-- TOP RIGHT PANEL: SYSTEM STATUS METRICS                     -->
-  <!-- ========================================================= -->
-
-  <g id="SystemStatusPanel" transform="translate(480, 50)">
-    <!-- Glass bar header -->
-    <rect x="0" y="0" width="675" height="65" rx="8" fill="url(#glassFill)" stroke="#ff0000" stroke-width="1" />
-
-    <!-- Status Lights -->
-    <g transform="translate(15, 18)">
-      <!-- Light 1: ONLINE -->
-      <circle cx="8" cy="8" r="5" fill="#55ff55" filter="url(#hudGlow)" />
-      <text x="18" y="12" fill="#ffffff" font-size="10" font-weight="bold">ONLINE</text>
-
-      <!-- Light 2: CONNECTED -->
-      <circle cx="85" cy="8" r="5" fill="#ff0000">
-        <animate attributeName="opacity" values="1;0;1" dur="1s" keyTimes="0;0.5;1" calcMode="discrete" repeatCount="indefinite" />
-      </circle>
-      <text x="95" y="12" fill="#ffffff" font-size="10" font-weight="bold">CONNECTED</text>
-
-      <!-- Light 3: SYNCING -->
-      <circle cx="180" cy="8" r="5" fill="#ff5555" filter="url(#hudGlow)" />
-      <text x="190" y="12" fill="#ffffff" font-size="10" font-weight="bold">SYNCING</text>
-    </g>
-
-    <!-- Telemetry Gauges / Mini Equalizers -->
-    <g transform="translate(280, 12)" font-family="monospace" font-size="9">
-      <!-- CPU -->
-      <g transform="translate(0, 0)">
-        <text x="0" y="10" fill="#ff5555">CPU: 24.8%</text>
-        <rect x="0" y="16" width="60" height="12" rx="2" fill="#000000" stroke="#ff0000" stroke-width="0.5" />
-        <rect x="1" y="17" width="18" height="10" fill="#ff0000" />
+      <!-- SEQUENTIAL BOOT ANIMATION LINES -->
+      <!-- Line 1 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1" begin="0.3s" dur="0.2s" fill="freeze" />
+        <text x="0" y="55" fill="#00ff66" font-size="13">&gt; Initializing Neural Engine...</text>
+        <text x="380" y="55" fill="#ff6688" font-size="12">[OK]</text>
       </g>
 
-      <!-- RAM -->
-      <g transform="translate(75, 0)">
-        <text x="0" y="10" fill="#ff5555">RAM: 8.4/32GB</text>
-        <rect x="0" y="16" width="60" height="12" rx="2" fill="#000000" stroke="#ff0000" stroke-width="0.5" />
-        <rect x="1" y="17" width="22" height="10" fill="#ff5555" />
+      <!-- Line 2 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1" begin="0.9s" dur="0.2s" fill="freeze" />
+        <text x="0" y="85" fill="#00ff66" font-size="13">&gt; Loading AI Modules...</text>
+        <text x="380" y="85" fill="#ff6688" font-size="12">[DONE]</text>
       </g>
 
-      <!-- GPU -->
-      <g transform="translate(160, 0)">
-        <text x="0" y="10" fill="#ff5555">GPU: 38% 62°C</text>
-        <rect x="0" y="16" width="60" height="12" rx="2" fill="#000000" stroke="#ff0000" stroke-width="0.5" />
-        <rect x="1" y="17" width="28" height="10" fill="#ff0000" />
+      <!-- Line 3 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1" begin="1.5s" dur="0.2s" fill="freeze" />
+        <text x="0" y="115" fill="#00ff66" font-size="13">&gt; Connecting GitHub API...</text>
+        <text x="380" y="115" fill="#ff6688" font-size="12">[CONNECTED]</text>
       </g>
 
-      <!-- PING -->
-      <g transform="translate(235, 0)">
-        <text x="0" y="10" fill="#55ff55">PING: 12ms</text>
-        <text x="0" y="26" fill="#ffffff">FPS: 120</text>
+      <!-- Line 4 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1" begin="2.1s" dur="0.2s" fill="freeze" />
+        <text x="0" y="145" fill="#00ff66" font-size="13">&gt; Loading Developer Profile...</text>
+        <text x="380" y="145" fill="#ff6688" font-size="12">[LOADED]</text>
       </g>
 
-      <!-- Equalizer Bars with Native SMIL Pulse -->
-      <g transform="translate(315, 8)">
-        <rect x="0" y="0" width="3" height="24" fill="#ff0000">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="1.2s" repeatCount="indefinite" />
-        </rect>
-        <rect x="6" y="6" width="3" height="18" fill="#ff5555">
-          <animate attributeName="opacity" values="1;0.5;1" dur="1.6s" repeatCount="indefinite" />
-        </rect>
-        <rect x="12" y="2" width="3" height="22" fill="#ff0000">
-          <animate attributeName="opacity" values="0.7;1;0.7" dur="1.4s" repeatCount="indefinite" />
-        </rect>
-        <rect x="18" y="10" width="3" height="14" fill="#55ff55">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="1.1s" repeatCount="indefinite" />
-        </rect>
-        <rect x="24" y="4" width="3" height="20" fill="#ff0000">
-          <animate attributeName="opacity" values="1;0.6;1" dur="1.8s" repeatCount="indefinite" />
-        </rect>
-        <rect x="30" y="12" width="3" height="12" fill="#ff5555">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="1.3s" repeatCount="indefinite" />
+      <!-- Line 5 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1" begin="2.7s" dur="0.2s" fill="freeze" />
+        <text x="0" y="180" fill="#ffffff" font-size="15" font-weight="bold">&gt; Welcome, ItachiPlub</text>
+      </g>
+
+      <!-- Line 6 -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1" begin="3.3s" dur="0.2s" fill="freeze" />
+        <text x="0" y="215" fill="#ff0033" font-size="14" font-weight="bold">&gt; System Ready</text>
+        <text x="180" y="215" fill="#00ff66" font-size="12">[100% OPERATIONAL]</text>
+      </g>
+
+      <!-- Blinking Cursor -->
+      <g transform="translate(0, 240)">
+        <text x="0" y="12" fill="#ff6688" font-size="13">&gt;</text>
+        <rect x="18" y="0" width="9" height="15" fill="#ff0033">
+          <animate attributeName="opacity" values="1;0;1" dur="2.5s" repeatCount="indefinite" />
         </rect>
       </g>
-    </g>
-  </g>
 
-  <!-- ========================================================= -->
-  <!-- MAIN ATTRACTION: MASSIVE 3D HOLOGRAPHIC EARTH (Right Side) -->
-  <!-- Cleaned Surrounding HUD (~25% clutter reduction for readability) -->
-  <!-- ========================================================= -->
+      <!-- ========================================================= -->
+      <!-- PREMIUM LOADING BAR                                        -->
+      <!-- ========================================================= -->
+      <g id="LoadingBarModule" transform="translate(0, 280)">
+        <text x="0" y="12" fill="#ff6688" font-size="11" font-weight="bold" letter-spacing="1">SYSTEM KERNEL CALIBRATION</text>
+        <text x="540" y="12" fill="#ffffff" font-size="12" font-weight="bold">100%</text>
 
-  <g id="HolographicEarthSystem">
-    
-    <!-- 1. ENERGY PROJECTOR BASE BELOW EARTH (Center: x=830, y=590) -->
-    <g id="ProjectorBase">
-      <!-- Expanding Energy Ripple Rings (Native SMIL) -->
-      <circle cx="830" cy="590" r="10" fill="none" stroke="#ff0000" stroke-width="2" opacity="0.9">
-        <animate attributeName="r" values="10;130" dur="3.0s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.9;0" dur="3.0s" repeatCount="indefinite" />
-        <animate attributeName="stroke-width" values="2;0.5" dur="3.0s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="830" cy="590" r="10" fill="none" stroke="#ff5555" stroke-width="2" opacity="0.9">
-        <animate attributeName="r" values="10;130" begin="1.5s" dur="3.0s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.9;0" begin="1.5s" dur="3.0s" repeatCount="indefinite" />
-        <animate attributeName="stroke-width" values="2;0.5" begin="1.5s" dur="3.0s" repeatCount="indefinite" />
-      </circle>
+        <!-- Bar Container Track -->
+        <rect x="0" y="22" width="580" height="22" rx="4" fill="#000000" stroke="#ff0033" stroke-width="1" />
 
-      <!-- Metallic Base Concentric Ellipses -->
-      <ellipse cx="830" cy="610" rx="140" ry="24" fill="#000000" stroke="#ff0000" stroke-width="2" filter="url(#hudGlow)" />
-      <ellipse cx="830" cy="610" rx="110" ry="18" fill="none" stroke="#ff5555" stroke-width="1" stroke-dasharray="6 4" />
-      <ellipse cx="830" cy="610" rx="70" ry="12" fill="#ff0000" fill-opacity="0.2" stroke="#ff2b2b" stroke-width="1.5" />
-      <ellipse cx="830" cy="610" rx="30" ry="6" fill="#ffffff" filter="url(#strongGlow)" />
+        <!-- Clipped Animated Fill & Moving Shine -->
+        <g clip-path="url(#loadingBarClip)" transform="translate(-72, -400)">
+          <rect x="72" y="422" width="576" height="18" fill="url(#loadingBarGrad)">
+            <animate attributeName="width" from="0" to="576" begin="0.3s" dur="3.2s" fill="freeze" calcMode="spline" keySplines="0.2 0 0.2 1" />
+          </rect>
+          <polygon points="0,0 45,0 20,22 -25,22" fill="#ffffff" opacity="0.8">
+            <animateTransform attributeName="transform" type="translate" from="20 422" to="680 422" dur="2.2s" repeatCount="indefinite" />
+          </polygon>
+        </g>
+      </g>
 
-      <!-- Energy Beam Light Cone Ascending to Earth with SMIL Pulse -->
-      <polygon points="720,610 940,610 1020,380 640,380" fill="url(#beamGrad)" opacity="0.4">
-        <animate attributeName="opacity" values="0.25;0.6;0.25" dur="3.0s" repeatCount="indefinite" />
-      </polygon>
-      
-      <!-- Energy Beam Vertical Rays -->
-      <line x1="770" y1="610" x2="710" y2="380" stroke="#ff0000" stroke-width="1" opacity="0.4" />
-      <line x1="830" y1="610" x2="830" y2="380" stroke="#ffffff" stroke-width="1.5" opacity="0.6" />
-      <line x1="890" y1="610" x2="950" y2="380" stroke="#ff0000" stroke-width="1" opacity="0.4" />
-    </g>
+      <!-- DEVELOPER PROFILE FOOTER TELEMETRY STRIP -->
+      <g id="ProfileTelemetry" transform="translate(0, 365)">
+        <rect x="0" y="0" width="580" height="130" rx="6" fill="#000000" fill-opacity="0.6" stroke="#ff0033" stroke-width="0.8" stroke-opacity="0.3" />
+        <text x="16" y="24" fill="#ff6688" font-size="11" font-weight="bold" letter-spacing="1.5">// USER IDENTITY &amp; CORE STACK</text>
+        <line x1="16" y1="32" x2="564" y2="32" stroke="#ff0033" stroke-width="0.5" opacity="0.3" />
 
-    <!-- 2. CLEANED SURROUNDING HUD RINGS & TARGET BRACKETS -->
-    <g id="SurroundingHud">
-      <!-- Outer Dashed Orbit Circle (Counter Clockwise SMIL Rotation) -->
+        <text x="16" y="56" fill="#ffffff" font-size="11">IDENTITY:</text>
+        <text x="95" y="56" fill="#00ff66" font-size="11">ItachiPlub // SENIOR FULL-STACK ARCHITECT</text>
+
+        <text x="16" y="78" fill="#ffffff" font-size="11">CORE TECH:</text>
+        <text x="95" y="78" fill="#ff6688" font-size="11">TypeScript • React • Node.js • Rust • Python</text>
+
+        <text x="16" y="100" fill="#ffffff" font-size="11">LOCATION:</text>
+        <text x="95" y="100" fill="#00ff66" font-size="11">TOKYO, JP [35.6762° N, 139.6503° E]</text>
+
+        <text x="440" y="100" fill="#ff0033" font-size="11" font-weight="bold">STATUS: ONLINE</text>
+      </g>
+
+    </g> <!-- End Left Console -->
+
+    <!-- ========================================================= -->
+    <!-- RIGHT SIDE: HOLOGRAPHIC EARTH MODULE                       -->
+    <!-- ========================================================= -->
+    <g id="HolographicEarthModule">
+      <!-- Ambient Glow behind Earth -->
+      <circle cx="930" cy="350" r="220" fill="url(#ambientGlow)" />
+
+      <!-- Outer Atmosphere Ring -->
+      <circle cx="930" cy="350" r="152" fill="none" stroke="#ff0033" stroke-width="1.8" stroke-opacity="0.8" />
+      <circle cx="930" cy="350" r="150" fill="#ff0033" fill-opacity="0.05" />
+
+      <!-- Orbit Ring 1 (Tilted Orbit) -->
+      <g transform="rotate(-20 930 350)">
+        <ellipse cx="930" cy="350" rx="190" ry="55" fill="none" stroke="#ff0033" stroke-width="1" stroke-dasharray="8 6" opacity="0.7">
+          <animateTransform attributeName="transform" type="rotate" from="0 930 350" to="360 930 350" dur="20.0s" repeatCount="indefinite" />
+        </ellipse>
+        <circle cx="1120" cy="350" r="3.5" fill="#ffffff" />
+      </g>
+
+      <!-- Orbit Ring 2 (Counter Orbit) -->
+      <g transform="rotate(35 930 350)">
+        <ellipse cx="930" cy="350" rx="175" ry="50" fill="none" stroke="#ff2b55" stroke-width="1" opacity="0.6">
+          <animateTransform attributeName="transform" type="rotate" from="360 930 350" to="0 930 350" dur="30.0s" repeatCount="indefinite" />
+        </ellipse>
+        <circle cx="755" cy="350" r="3" fill="#00ff66" />
+      </g>
+
+      <!-- Orbit Ring 3 (Outer Scanner Ring) -->
       <g>
-        <animateTransform attributeName="transform" type="rotate" from="360 830 380" to="0 830 380" dur="45.0s" repeatCount="indefinite" />
-        <circle cx="830" cy="380" r="240" fill="none" stroke="#ff0000" stroke-width="1" stroke-dasharray="3 9" stroke-opacity="0.5" />
-      </g>
-      
-      <!-- Outer Solid Tech Compass Ring -->
-      <circle cx="830" cy="380" r="225" fill="none" stroke="#ff0000" stroke-width="1.5" stroke-opacity="0.7" />
-      
-      <!-- Fast Rotating Scanner Arc with 3 Akatsuki Tomoe Nodes -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 830 380" to="360 830 380" dur="15.0s" repeatCount="indefinite" />
-        <circle cx="830" cy="380" r="225" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="80 300" filter="url(#hudGlow)" />
-        <circle cx="830" cy="155" r="4.5" fill="#ff2b2b" filter="url(#hudGlow)" />
-        <circle cx="1025" cy="492" r="4.5" fill="#ff2b2b" filter="url(#hudGlow)" />
-        <circle cx="635" cy="492" r="4.5" fill="#ff2b2b" filter="url(#hudGlow)" />
+        <animateTransform attributeName="transform" type="rotate" from="0 930 350" to="360 930 350" dur="15.0s" repeatCount="indefinite" />
+        <circle cx="930" cy="350" r="162" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="60 200 40 100" />
+        <circle cx="930" cy="188" r="4" fill="#ff2b55" />
       </g>
 
       <!-- Radar Sweep Cone -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 830 380" to="360 830 380" dur="20.0s" repeatCount="indefinite" />
-        <path d="M 830 380 L 1045 300 A 215 215 0 0 1 1045 460 Z" fill="#ff0000" fill-opacity="0.06" />
+      <g transform="rotate(0 930 350)">
+        <animateTransform attributeName="transform" type="rotate" from="0 930 350" to="360 930 350" dur="15.0s" repeatCount="indefinite" />
+        <path d="M 930 350 L 1080 350 A 150 150 0 0 0 930 200 Z" fill="url(#radarGrad)" opacity="0.35" />
       </g>
 
-      <!-- Target HUD Corner Brackets -->
-      <!-- Top Left Bracket -->
-      <path d="M 610 180 L 610 150 L 640 150" fill="none" stroke="#ff0000" stroke-width="2.5" filter="url(#hudGlow)" />
-      <text x="615" y="142" fill="#ff5555" font-size="9" font-family="monospace">TARGET_LOCK // NORTH</text>
+      <!-- Globe Latitude / Longitude Grid -->
+      <line x1="780" y1="350" x2="1080" y2="350" stroke="#ff0033" stroke-width="1" opacity="0.4" />
+      <line x1="930" y1="200" x2="930" y2="500" stroke="#ff0033" stroke-width="1" opacity="0.4" />
+      <ellipse cx="930" cy="350" rx="150" ry="40" fill="none" stroke="#ff0033" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4" />
+      <ellipse cx="930" cy="350" rx="150" ry="90" fill="none" stroke="#ff0033" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4" />
+      <ellipse cx="930" cy="350" rx="60" ry="150" fill="none" stroke="#ff0033" stroke-width="0.8" opacity="0.4" />
 
-      <!-- Top Right Bracket -->
-      <path d="M 1050 180 L 1050 150 L 1020 150" fill="none" stroke="#ff0000" stroke-width="2.5" filter="url(#hudGlow)" />
-      <text x="960" y="142" fill="#ff5555" font-size="9" font-family="monospace">COORD // 35.67° N</text>
+      <!-- Rotating Globe Landmasses -->
+      <g clip-path="url(#earthGlobeClip)">
+        <g stroke="#ff0033" stroke-width="1.2" fill="#ff0033" fill-opacity="0.28">
+          <animateTransform attributeName="transform" type="translate" from="-140 0" to="140 0" dur="30.0s" repeatCount="indefinite" />
+          <!-- Primary Landmass Set -->
+          <polygon points="820,260 850,240 880,250 890,280 870,310 830,320 800,300 810,270" />
+          <polygon points="860,340 880,360 870,410 850,430 840,380" />
+          <polygon points="950,240 980,230 1000,250 970,280 940,260" />
+          <polygon points="950,290 990,300 1010,350 980,410 940,370 940,310" />
+          <polygon points="1020,220 1070,230 1100,270 1060,300 1010,260" />
+          <polygon points="1070,350 1100,360 1090,390 1060,380" />
 
-      <!-- Bottom Left Bracket -->
-      <path d="M 610 580 L 610 610 L 640 610" fill="none" stroke="#ff0000" stroke-width="2.5" filter="url(#hudGlow)" />
-      <!-- Bottom Right Bracket -->
-      <path d="M 1050 580 L 1050 610 L 1020 610" fill="none" stroke="#ff0000" stroke-width="2.5" filter="url(#hudGlow)" />
-
-      <!-- Central Crosshairs -->
-      <line x1="830" y1="130" x2="830" y2="150" stroke="#ff0000" stroke-width="1" />
-      <line x1="830" y1="610" x2="830" y2="630" stroke="#ff0000" stroke-width="1" />
-      <line x1="580" y1="380" x2="600" y2="380" stroke="#ff0000" stroke-width="1" />
-      <line x1="1060" y1="380" x2="1080" y2="380" stroke="#ff0000" stroke-width="1" />
-
-      <!-- Orbiting Satellite Markers (Native SMIL) -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 830 380" to="360 830 380" dur="30.0s" repeatCount="indefinite" />
-        <!-- Sat 1 -->
-        <circle cx="1040" cy="380" r="3" fill="#ffffff" filter="url(#hudGlow)" />
-        <text x="1048" y="383" fill="#ffffff" font-size="8" font-family="monospace">SAT-01</text>
-        <line x1="830" y1="380" x2="1040" y2="380" stroke="#ff0000" stroke-width="0.5" stroke-dasharray="2 4" />
-
-        <!-- Sat 2 -->
-        <circle cx="620" cy="380" r="3" fill="#55ff55" filter="url(#hudGlow)" />
-        <text x="580" y="383" fill="#55ff55" font-size="8" font-family="monospace">SAT-02</text>
-      </g>
-    </g>
-
-    <!-- 3. MASSIVE HOLOGRAPHIC EARTH WIREFRAME & GLOWING CONTINENTS -->
-    <!-- Center: (830, 380), Radius: 180 -->
-    <g id="EarthGlobe">
-      <!-- Outer Atmospheric Halo -->
-      <circle cx="830" cy="380" r="182" fill="none" stroke="#ff0000" stroke-width="2" stroke-opacity="0.9" filter="url(#hudGlow)" />
-      <circle cx="830" cy="380" r="180" fill="#ff0000" fill-opacity="0.04" />
-
-      <!-- CONTINUOUS 30-SECOND ROTATING GLOBE LAYER (Native SMIL) -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 830 380" to="360 830 380" dur="30.0s" repeatCount="indefinite" />
-        
-        <!-- LATITUDE ELLIPSES -->
-        <!-- Equator -->
-        <ellipse cx="830" cy="380" rx="180" ry="50" fill="none" stroke="#ff0000" stroke-width="1.2" stroke-opacity="0.8" />
-        <!-- Tropics North -->
-        <ellipse cx="830" cy="320" rx="160" ry="40" fill="none" stroke="#ff5555" stroke-width="0.8" stroke-opacity="0.6" />
-        <ellipse cx="830" cy="260" rx="120" ry="28" fill="none" stroke="#ff0000" stroke-width="0.8" stroke-opacity="0.5" />
-        <ellipse cx="830" cy="220" rx="70" ry="16" fill="none" stroke="#ff5555" stroke-width="0.8" stroke-opacity="0.4" />
-        <!-- Tropics South -->
-        <ellipse cx="830" cy="440" rx="160" ry="40" fill="none" stroke="#ff5555" stroke-width="0.8" stroke-opacity="0.6" />
-        <ellipse cx="830" cy="500" rx="120" ry="28" fill="none" stroke="#ff0000" stroke-width="0.8" stroke-opacity="0.5" />
-        <ellipse cx="830" cy="540" rx="70" ry="16" fill="none" stroke="#ff5555" stroke-width="0.8" stroke-opacity="0.4" />
-
-        <!-- LONGITUDE MERIDIAN ELLIPSES (Tilted 3D Illusion) -->
-        <ellipse cx="830" cy="380" rx="180" ry="180" fill="none" stroke="#ff0000" stroke-width="1" stroke-dasharray="4 4" stroke-opacity="0.4" />
-        <ellipse cx="830" cy="380" rx="130" ry="180" fill="none" stroke="#ff0000" stroke-width="0.9" stroke-opacity="0.5" />
-        <ellipse cx="830" cy="380" rx="70" ry="180" fill="none" stroke="#ff5555" stroke-width="0.9" stroke-opacity="0.5" />
-        <ellipse cx="830" cy="380" rx="20" ry="180" fill="none" stroke="#ff0000" stroke-width="1" stroke-opacity="0.6" />
-
-        <!-- GLOWING CONTINENT VECTOR LANDMASSES (Projected onto Sphere) -->
-        <g stroke="#ff0000" stroke-width="1.5" fill="#ff0000" fill-opacity="0.25" filter="url(#hudGlow)">
-          <!-- North America -->
-          <polygon points="720,280 750,260 780,270 790,300 770,330 730,340 700,320 710,290" />
-          
-          <!-- South America -->
-          <polygon points="760,370 780,360 800,380 790,440 760,460 750,420" />
-          
-          <!-- Europe -->
-          <polygon points="830,260 860,250 880,270 860,290 830,280" />
-          
-          <!-- Africa -->
-          <polygon points="840,310 880,310 900,350 880,410 850,420 830,360" />
-          
-          <!-- Asia -->
-          <polygon points="890,250 940,240 970,270 960,320 910,320 880,280" />
-          
-          <!-- Australia -->
-          <polygon points="930,420 960,410 970,440 940,450" />
-
-          <!-- Japan / East Asia Arc -->
-          <polygon points="965,290 972,285 975,295 968,300" fill="#ff2b2b" />
+          <!-- Repeating Set for Seamless Scroll Loop -->
+          <polygon points="680,260 710,240 740,250 750,280 730,310 690,320 660,300 670,270" />
+          <polygon points="720,340 740,360 730,410 710,430 700,380" />
+          <polygon points="810,240 840,230 860,250 830,280 800,260" />
+          <polygon points="810,290 850,300 870,350 840,410 800,370 800,310" opacity="0.9" />
         </g>
-
-        <!-- MAJOR CITY HOTSPOT BEACONS -->
-        <!-- Tokyo -->
-        <circle cx="968" cy="292" r="3" fill="#ffffff">
-          <animate attributeName="opacity" values="1;0;1" dur="1s" keyTimes="0;0.5;1" calcMode="discrete" repeatCount="indefinite" />
-        </circle>
-        <!-- London -->
-        <circle cx="835" cy="265" r="3" fill="#55ff55" />
-        <!-- New York -->
-        <circle cx="755" cy="295" r="3" fill="#ffffff" />
-        <!-- Sydney -->
-        <circle cx="950" cy="430" r="3" fill="#55ff55" />
-
-      </g> <!-- End Rotating Globe -->
-
-      <!-- Center Glowing Core Node -->
-      <circle cx="830" cy="380" r="8" fill="#ffffff" filter="url(#strongGlow)" opacity="0.8" />
-    </g>
-
-    <!-- 4. HOLOGRAPHIC DATA LABELS & TELEMETRY OVERLAY -->
-    <g id="DataOverlay" font-family="monospace" font-size="10" font-weight="bold">
-      <!-- Top Left Label -->
-      <rect x="620" y="210" width="110" height="20" fill="#000000" fill-opacity="0.8" stroke="#ff0000" stroke-width="1" rx="3" />
-      <text x="628" y="224" fill="#ffffff">EARTH-01 // CORE</text>
-
-      <!-- Top Right Label -->
-      <rect x="930" y="210" width="110" height="20" fill="#000000" fill-opacity="0.8" stroke="#ff0000" stroke-width="1" rx="3" />
-      <text x="938" y="224" fill="#55ff55">SYS ACTIVE 100%</text>
-
-      <!-- Bottom Telemetry Banner -->
-      <g transform="translate(640, 530)">
-        <rect x="0" y="0" width="380" height="24" rx="4" fill="#000000" fill-opacity="0.85" stroke="#ff0000" stroke-width="1" />
-        <text x="12" y="16" fill="#ff5555">LAT: 35.6762° N  LON: 139.6503° E</text>
-        <text x="210" y="16" fill="#55ff55">ALT: 408.2KM  SPD: 27.6K</text>
       </g>
-    </g>
 
-  </g> <!-- End Holographic Earth System -->
+      <!-- Core Glowing Node -->
+      <circle cx="930" cy="350" r="10" fill="url(#coreGlow)" opacity="0.9" />
 
+      <!-- Earth Top Badge -->
+      <rect x="850" y="170" width="160" height="22" rx="4" fill="#000000" fill-opacity="0.85" stroke="#ff0033" stroke-width="1" />
+      <text x="862" y="185" fill="#ffffff" font-size="10" font-weight="bold">HOLOGRAPHIC GLOBE</text>
+
+      <!-- Earth Bottom Telemetry Box -->
+      <g transform="translate(775, 520)">
+        <rect x="0" y="0" width="310" height="34" rx="5" fill="#000000" fill-opacity="0.85" stroke="#ff0033" stroke-width="0.8" />
+        <text x="12" y="15" fill="#ff6688" font-size="9">LAT: 35.6762° N  LON: 139.6503° E</text>
+        <text x="12" y="27" fill="#00ff66" font-size="9">ORBIT: 408 KM  •  LINK: SYNCED</text>
+      </g>
+    </g> <!-- End Holographic Earth Module -->
+
+  </g> <!-- End JarvisTerminal -->
 </svg>
