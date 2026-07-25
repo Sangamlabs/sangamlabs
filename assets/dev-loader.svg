@@ -1,0 +1,84 @@
+<svg width="700" height="80" viewBox="0 0 700 80" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+    <linearGradient id="dev" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff1a1a"/>
+      <stop offset="50%" stop-color="#b30000"/>
+      <stop offset="100%" stop-color="#ff1a1a"/>
+    </linearGradient>
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+  </defs>
+
+  <!-- Title -->
+
+  <text
+      x="350"
+      y="22"
+      fill="#ff3333"
+      font-size="18"
+      font-family="monospace"
+      text-anchor="middle"
+      font-weight="bold">
+
+      👁️ FULL STACK DEVELOPER
+
+  </text>
+
+  <!-- Background Bar -->
+
+  <rect
+      x="40"
+      y="40"
+      width="620"
+      height="16"
+      rx="8"
+      fill="#111111"
+      stroke="#ff3333"
+      stroke-width="1.5"/>
+
+  <!-- Moving Loader -->
+
+  <rect
+      x="40"
+      y="40"
+      width="120"
+      height="16"
+      rx="8"
+      fill="url(#dev)"
+      filter="url(#glow)">
+
+      <animate
+          attributeName="x"
+          values="40;540;40"
+          dur="12s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keySplines=".42 0 .58 1;.42 0 .58 1"
+          keyTimes="0;0.5;1"/>
+
+  </rect>
+
+  <!-- Footer -->
+
+  <text
+      x="350"
+      y="74"
+      fill="#ff6666"
+      font-size="12"
+      text-anchor="middle"
+      font-family="monospace">
+
+      Initializing • HTML • CSS • JavaScript • Python • AI • Cloud
+
+  </text>
+
+</svg>
