@@ -9,20 +9,16 @@
 <h2 align="center">👁️ UCHIHA SYSTEM STATUS 👁️</h2>
 
 <p align="center">
-
-<img src="https://img.shields.io/badge/👁️_Mangekyō-Sharingan_Activated-8B0000?style=for-the-badge"/>
-
-<img src="https://img.shields.io/badge/☁️_Akatsuki-Member-000000?style=for-the-badge"/>
-
-<img src="https://img.shields.io/github/followers/itachiplub-cloud?label=🦅%20Followers&style=for-the-badge&color=8B0000"/>
-
-<img src="https://komarev.com/ghpvc/?username=itachiplub-cloud&label=👁️%20Sharingan%20Views&color=8B0000&style=for-the-badge"/>
-
+  <img src="assets/devcard.svg" width="800">
 </p>
 
 ---
 
-<h2 align="center">⚔️ UCHIHA ANALYTICS ⚔️</h2>
+<h2 align="center">⚔️ UCHIHA ANALYTICS ⚔️
+<p align="center">
+  <img src="assets/dev-loader.svg" width="700">
+</p>
+</h2>
 
 <p align="center">
 
