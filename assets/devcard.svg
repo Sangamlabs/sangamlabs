@@ -1,0 +1,121 @@
+<svg width="800" height="260" viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+
+<linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#0d0d0d"/>
+<stop offset="100%" stop-color="#1a0000"/>
+</linearGradient>
+
+<linearGradient id="red" x1="0%" y1="0%" x2="100%">
+<stop offset="0%" stop-color="#ff2b2b"/>
+<stop offset="100%" stop-color="#8b0000"/>
+</linearGradient>
+
+<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+<feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#ff0000" flood-opacity="0.45"/>
+</filter>
+
+</defs>
+
+<!-- Shadow -->
+<rect
+x="70"
+y="42"
+width="660"
+height="170"
+rx="24"
+fill="#000"
+opacity="0.45"/>
+
+<!-- Main Card -->
+<rect
+x="60"
+y="30"
+width="660"
+height="170"
+rx="24"
+fill="url(#bg)"
+stroke="url(#red)"
+stroke-width="2"
+filter="url(#shadow)"/>
+
+<!-- Highlight -->
+<path
+d="M60 55 Q390 0 720 55"
+stroke="#ff6666"
+stroke-width="2"
+opacity="0.35"
+fill="none"/>
+
+<!-- Title -->
+<text
+x="390"
+y="72"
+fill="#ff4040"
+font-size="26"
+font-family="monospace"
+font-weight="bold"
+text-anchor="middle">
+
+⚡ FULL STACK DEVELOPER ⚡
+
+</text>
+
+<!-- Divider -->
+<line
+x1="100"
+y1="92"
+x2="680"
+y2="92"
+stroke="#ff2b2b"
+opacity=".45"/>
+
+<!-- Skills -->
+<text
+x="100"
+y="130"
+fill="#ffffff"
+font-size="16"
+font-family="monospace">
+
+▸ Python • JavaScript • HTML • CSS
+
+</text>
+
+<text
+x="100"
+y="155"
+fill="#ffffff"
+font-size="16"
+font-family="monospace">
+
+▸ MongoDB • Git • Linux • Docker
+
+</text>
+
+<text
+x="100"
+y="180"
+fill="#ff6666"
+font-size="15"
+font-family="monospace">
+
+AI • Automation • Telegram Bots • Cloud
+
+</text>
+
+<!-- Status -->
+<circle cx="650" cy="65" r="8" fill="#ff2b2b"/>
+<text
+x="670"
+y="70"
+fill="#ff7777"
+font-size="13"
+font-family="monospace">
+
+ONLINE
+
+</text>
+
+</svg>
