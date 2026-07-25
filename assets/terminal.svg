@@ -1,3 +1,337 @@
-<p align="center">
-  <img src="assets/terminal.svg" width="100%" alt="JARVIS Terminal"/>
-</p>
+<svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-family="'Courier New', monospace">
+<defs>
+  <radialGradient id="earthGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#ff2b2b" stop-opacity="0.35"/>
+    <stop offset="70%" stop-color="#ff0000" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#ff0000" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="barFill" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#550000"/>
+    <stop offset="60%" stop-color="#ff0000"/>
+    <stop offset="100%" stop-color="#ff5555"/>
+  </linearGradient>
+  <linearGradient id="shineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+    <stop offset="50%" stop-color="#ffffff" stop-opacity="0.65"/>
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="panelFill" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#0a0a0a" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="#050505" stop-opacity="0.75"/>
+  </linearGradient>
+  <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0">
+    <stop offset="0%" stop-color="#ff0000" stop-opacity="0"/>
+    <stop offset="50%" stop-color="#ff2b2b" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="#ff0000" stop-opacity="0"/>
+  </linearGradient>
+  <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+    <path d="M34 0H0V34" fill="none" stroke="#ff0000" stroke-opacity="0.06" stroke-width="1"/>
+  </pattern>
+  <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="3" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="glowBig" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="8" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <clipPath id="earthClip"><circle cx="880" cy="440" r="148"/></clipPath>
+  <filter id="glowTight" x="-15%" y="-15%" width="130%" height="130%">
+    <feGaussianBlur stdDeviation="2" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <clipPath id="loadingBarClip">
+    <rect x="55" y="300" width="500" height="14" rx="3"/>
+  </clipPath>
+</defs>
+
+<!-- ================= BACKGROUND PANEL ================= -->
+<rect x="18" y="18" width="1164" height="664" rx="22" fill="url(#panelFill)"/>
+<rect x="18" y="18" width="1164" height="664" rx="22" fill="url(#grid)"/>
+
+<!-- subtle binary rain -->
+<g fill="#ff5555" opacity="0.10" font-size="11">
+  <text x="70" y="0">01001<animate attributeName="y" values="0;700;0" dur="14s" repeatCount="indefinite"/></text>
+  <text x="230" y="150">10110<animate attributeName="y" values="150;700;150" dur="17s" repeatCount="indefinite"/></text>
+  <text x="610" y="60">00101<animate attributeName="y" values="60;700;60" dur="12s" repeatCount="indefinite"/></text>
+  <text x="1040" y="300">11010<animate attributeName="y" values="300;700;300" dur="19s" repeatCount="indefinite"/></text>
+  <text x="960" y="20">01100<animate attributeName="y" values="20;700;20" dur="15s" repeatCount="indefinite"/></text>
+</g>
+
+<!-- floating particles -->
+<g fill="#ff2b2b">
+  <circle cx="120" cy="500" r="1.6" opacity="0.5"><animate attributeName="opacity" values="0.1;0.7;0.1" dur="4s" repeatCount="indefinite"/></circle>
+  <circle cx="600" cy="620" r="1.4" opacity="0.5"><animate attributeName="opacity" values="0.6;0.1;0.6" dur="5s" repeatCount="indefinite"/></circle>
+  <circle cx="1120" cy="120" r="1.8" opacity="0.5"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="3.5s" repeatCount="indefinite"/></circle>
+  <circle cx="450" cy="90" r="1.4" opacity="0.4"><animate attributeName="opacity" values="0.5;0.05;0.5" dur="6s" repeatCount="indefinite"/></circle>
+  <circle cx="980" cy="560" r="1.6" opacity="0.5"><animate attributeName="opacity" values="0.1;0.6;0.1" dur="4.5s" repeatCount="indefinite"/></circle>
+</g>
+
+<!-- ================= OUTER HUD FRAME ================= -->
+<rect x="30" y="30" width="1140" height="640" rx="18" fill="none" stroke="#ff0000" stroke-width="1.4" filter="url(#glow)" opacity="0.8">
+  <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
+</rect>
+<rect x="38" y="38" width="1124" height="624" rx="14" fill="none" stroke="#ff5555" stroke-width="0.7" stroke-dasharray="18 10" opacity="0.5">
+  <animate attributeName="stroke-dashoffset" values="0;56" dur="6s" repeatCount="indefinite"/>
+</rect>
+
+<!-- hexagon corner decorations -->
+<g stroke="#ff2b2b" stroke-width="1.3" fill="none" filter="url(#glow)" opacity="0.85">
+  <polygon points="30,55 30,30 55,30 70,45 55,60 30,60"/>
+  <polygon points="1170,55 1170,30 1145,30 1130,45 1145,60 1170,60"/>
+  <polygon points="30,645 30,670 55,670 70,655 55,640 30,640"/>
+  <polygon points="1170,645 1170,670 1145,670 1130,655 1145,640 1170,640"/>
+</g>
+
+<!-- moving scanline -->
+<rect x="40" y="30" width="1120" height="3" fill="url(#scanGrad)">
+  <animate attributeName="y" values="35;665;35" dur="5s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.9;0.2;0.9" dur="5s" repeatCount="indefinite"/>
+</rect>
+
+<!-- ============ TITLE BAR ============ -->
+<text x="60" y="60" fill="#ff2b2b" font-size="18" letter-spacing="3" filter="url(#glow)" font-weight="bold">J.A.R.V.I.S // OS-CORE</text>
+<circle cx="1140" cy="55" r="4" fill="#55ff55"><animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/></circle>
+
+<!-- ================= LEFT: TERMINAL ================= -->
+<g>
+  <rect x="55" y="80" width="500" height="185" rx="8" fill="#050505" fill-opacity="0.6" stroke="#ff2b2b" stroke-width="1" filter="url(#glow)"/>
+  <rect x="55" y="80" width="500" height="24" rx="8" fill="#ff0000" fill-opacity="0.15"/>
+  <circle cx="72" cy="92" r="4" fill="#ff5555"/><circle cx="86" cy="92" r="4" fill="#ff5555" opacity="0.6"/><circle cx="100" cy="92" r="4" fill="#ff5555" opacity="0.3"/>
+  <text x="300" y="96" fill="#ff5555" font-size="11" text-anchor="middle" letter-spacing="1">root@jarvis:~ BOOT_SEQUENCE</text>
+
+  <g font-size="12.5" fill="#55ff55">
+    <text x="68" y="128" opacity="0"> &gt; initializing kernel modules... [OK]<animate attributeName="opacity" to="1" begin="0.2s" dur="0.3s" fill="freeze"/></text>
+    <text x="68" y="146" opacity="0"> &gt; mounting neural filesystem... [OK]<animate attributeName="opacity" to="1" begin="0.8s" dur="0.3s" fill="freeze"/></text>
+    <text x="68" y="164" opacity="0"> &gt; loading AI cortex modules v9.2<animate attributeName="opacity" to="1" begin="1.4s" dur="0.3s" fill="freeze"/></text>
+    <text x="68" y="182" opacity="0"> &gt; establishing secure uplink... [OK]<animate attributeName="opacity" to="1" begin="2.0s" dur="0.3s" fill="freeze"/></text>
+    <text x="68" y="200" opacity="0"> &gt; calibrating holo-projector array<animate attributeName="opacity" to="1" begin="2.6s" dur="0.3s" fill="freeze"/></text>
+    <text x="68" y="218" opacity="0"> &gt; SYSTEM READY. WELCOME, DEVELOPER_<animate attributeName="opacity" to="1" begin="3.2s" dur="0.3s" fill="freeze"/></text>
+    <text x="68" y="236" opacity="0" fill="#ff5555"> &gt; awaiting command...<animate attributeName="opacity" to="1" begin="3.8s" dur="0.3s" fill="freeze"/></text>
+  </g>
+  <rect x="235" y="228" width="8" height="13" fill="#55ff55">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" begin="3.8s" repeatCount="indefinite"/>
+  </rect>
+</g>
+
+<!-- ============ TOP RIGHT: SYSTEM STATUS ============ -->
+<g>
+  <rect x="645" y="80" width="500" height="160" rx="8" fill="#050505" fill-opacity="0.6" stroke="#ff2b2b" stroke-width="1" filter="url(#glow)"/>
+  <text x="662" y="102" fill="#ffffff" font-size="12" letter-spacing="2" opacity="0.85">SYSTEM STATUS</text>
+
+  <g font-size="10.5" font-weight="bold">
+    <circle cx="670" cy="120" r="4" fill="#55ff55"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+    <text x="682" y="124" fill="#55ff55">ONLINE</text>
+    <circle cx="760" cy="120" r="4" fill="#ff2b2b"><animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/></circle>
+    <text x="772" y="124" fill="#ff5555">CONNECTED</text>
+    <circle cx="880" cy="120" r="4" fill="#ffffff"><animate attributeName="opacity" values="1;0.15;1" dur="0.6s" repeatCount="indefinite"/></circle>
+    <text x="892" y="124" fill="#ffffff" opacity="0.8">SYNCING</text>
+  </g>
+
+  <g font-size="10.5" fill="#ffffff" opacity="0.85">
+    <text x="662" y="150">CPU</text>
+    <rect x="695" y="142" width="140" height="8" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="695" y="142" width="0" height="8" fill="url(#barFill)"><animate attributeName="width" values="60;95;60" dur="3s" repeatCount="indefinite"/></rect>
+
+    <text x="662" y="168">RAM</text>
+    <rect x="695" y="160" width="140" height="8" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="695" y="160" width="0" height="8" fill="url(#barFill)"><animate attributeName="width" values="90;60;90" dur="4s" repeatCount="indefinite"/></rect>
+
+    <text x="662" y="186">GPU</text>
+    <rect x="695" y="178" width="140" height="8" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="695" y="178" width="0" height="8" fill="url(#barFill)"><animate attributeName="width" values="40;100;40" dur="3.5s" repeatCount="indefinite"/></rect>
+
+    <text x="870" y="150">PING</text>
+    <text x="925" y="150" fill="#ff5555"><animate attributeName="x" values="925" dur="1s"/>14ms</text>
+    <text x="870" y="168">FPS</text>
+    <text x="925" y="168" fill="#ff5555">60</text>
+    <text x="870" y="186">TEMP</text>
+    <text x="925" y="186" fill="#ff5555">42°C</text>
+  </g>
+</g>
+
+<!-- ============ LOADING MATRIX ============ -->
+<g>
+  <text x="60" y="292" fill="#ffffff" font-size="11" letter-spacing="2" opacity="0.8">LOADING MATRIX</text>
+  <text x="500" y="292" fill="#ff5555" font-size="11" text-anchor="end">SYNCING...</text>
+  <rect x="55" y="300" width="500" height="14" rx="3" fill="none" stroke="#ff2b2b" stroke-width="1"/>
+  <rect x="55" y="300" width="0" height="14" rx="3" fill="url(#barFill)" filter="url(#glowTight)">
+    <animate attributeName="width" values="20;480;20" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <g clip-path="url(#loadingBarClip)">
+    <rect x="-60" y="300" width="60" height="14" fill="url(#shineGrad)">
+      <animate attributeName="x" values="-60;555" dur="2.2s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+</g>
+
+<!-- ============ SKILL BARS ============ -->
+<g font-size="11" fill="#ffffff">
+  <!-- 7 skills: label, y baseline, target width -->
+  <g id="skills">
+    <text x="55" y="345">UI DESIGN</text><rect x="200" y="335" width="355" height="7" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="200" y="335" width="0" height="7" fill="url(#barFill)"><animate attributeName="width" to="330" dur="2s" begin="0.2s" fill="freeze"/></rect>
+
+    <text x="55" y="368">CSS</text><rect x="200" y="358" width="355" height="7" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="200" y="358" width="0" height="7" fill="url(#barFill)"><animate attributeName="width" to="310" dur="2s" begin="0.4s" fill="freeze"/></rect>
+
+    <text x="55" y="391">JAVASCRIPT</text><rect x="200" y="381" width="355" height="7" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="200" y="381" width="0" height="7" fill="url(#barFill)"><animate attributeName="width" to="345" dur="2s" begin="0.6s" fill="freeze"/></rect>
+
+    <text x="55" y="414">PYTHON</text><rect x="200" y="404" width="355" height="7" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="200" y="404" width="0" height="7" fill="url(#barFill)"><animate attributeName="width" to="300" dur="2s" begin="0.8s" fill="freeze"/></rect>
+
+    <text x="55" y="437">AI</text><rect x="200" y="427" width="355" height="7" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="200" y="427" width="0" height="7" fill="url(#barFill)"><animate attributeName="width" to="335" dur="2s" begin="1.0s" fill="freeze"/></rect>
+
+    <text x="55" y="460">CLOUD</text><rect x="200" y="450" width="355" height="7" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="200" y="450" width="0" height="7" fill="url(#barFill)"><animate attributeName="width" to="270" dur="2s" begin="1.2s" fill="freeze"/></rect>
+
+    <text x="55" y="483">DOCKER</text><rect x="200" y="473" width="355" height="7" fill="none" stroke="#ff2b2b" stroke-width="0.6"/>
+    <rect x="200" y="473" width="0" height="7" fill="url(#barFill)"><animate attributeName="width" to="290" dur="2s" begin="1.4s" fill="freeze"/></rect>
+  </g>
+</g>
+
+<!-- ============ MISSION / BOTTOM LEFT ============ -->
+<g>
+  <line x1="55" y1="510" x2="555" y2="510" stroke="#ff2b2b" stroke-width="0.6" opacity="0.5"/>
+  <text x="55" y="535" fill="#ff5555" font-size="10.5" letter-spacing="2" opacity="0.8">MISSION</text>
+  <text x="55" y="562" fill="#ff2b2b" font-size="21" font-weight="bold" filter="url(#glow)">
+    BUILD NEXT-GEN INTERFACES
+    <animate attributeName="opacity" values="0.75;1;0.75" dur="2.5s" repeatCount="indefinite"/>
+  </text>
+  <text x="55" y="583" fill="#ff5555" font-size="11" letter-spacing="1">CODENAME: SHARINGAN_UI</text>
+
+  <g font-size="10.5" fill="#55ff55" opacity="0.9">
+    <text x="55" y="608" opacity="0">$ git commit -m "feat: neural ui core"<animate attributeName="opacity" to="1" begin="1s" dur="0.3s" fill="freeze"/></text>
+    <text x="55" y="625" opacity="0">$ git push origin main ... done ✓<animate attributeName="opacity" to="1" begin="1.6s" dur="0.3s" fill="freeze"/></text>
+    <text x="55" y="642" opacity="0" fill="#ff5555">$ deploy --target=production --ok<animate attributeName="opacity" to="1" begin="2.2s" dur="0.3s" fill="freeze"/></text>
+  </g>
+</g>
+
+<!-- ================= BOTTOM RIGHT: HOLOGRAPHIC EARTH ================= -->
+<g>
+  <!-- ambient glow field -->
+  <circle cx="880" cy="440" r="230" fill="url(#earthGlow)"/>
+
+  <!-- data labels & leader lines -->
+  <g font-size="9.5" fill="#ff5555" opacity="0.85" letter-spacing="1">
+    <line x1="700" y1="300" x2="740" y2="300" stroke="#ff2b2b" stroke-width="0.5"/>
+    <text x="705" y="296">EARTH-01</text>
+    <line x1="1040" y1="300" x2="1000" y2="300" stroke="#ff2b2b" stroke-width="0.5"/>
+    <text x="1005" y="296" fill="#55ff55" text-anchor="end">● SYS ACTIVE</text>
+    <text x="705" y="600">LAT 34.05N  LON 118.25W</text>
+    <text x="705" y="614">ALT 408KM   SPD 27600KM/H</text>
+  </g>
+
+  <!-- outer orbit / scanner rings -->
+  <g fill="none" stroke="#ff2b2b">
+    <circle cx="880" cy="440" r="172" stroke-width="0.6" stroke-dasharray="4 8" opacity="0.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 880 440" to="360 880 440" dur="20s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="880" cy="440" r="192" stroke-width="0.6" stroke-dasharray="2 10" opacity="0.4">
+      <animateTransform attributeName="transform" type="rotate" from="360 880 440" to="0 880 440" dur="26s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="880" cy="440" r="212" stroke-width="0.8" stroke-dasharray="30 6 2 6" opacity="0.3">
+      <animateTransform attributeName="transform" type="rotate" from="0 880 440" to="360 880 440" dur="34s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- radar pulse waves -->
+  <g fill="none" stroke="#ff2b2b">
+    <circle cx="880" cy="440" r="148" stroke-width="1.2">
+      <animate attributeName="r" values="148;230" dur="3s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;0" dur="3s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="880" cy="440" r="148" stroke-width="1.2">
+      <animate attributeName="r" values="148;230" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- orbiting triangles / tracking markers -->
+  <g fill="#ff5555">
+    <g><animateTransform attributeName="transform" type="rotate" from="0 880 440" to="360 880 440" dur="9s" repeatCount="indefinite"/>
+      <polygon points="880,268 875,278 885,278"/>
+    </g>
+    <g><animateTransform attributeName="transform" type="rotate" from="120 880 440" to="480 880 440" dur="9s" repeatCount="indefinite"/>
+      <polygon points="880,268 875,278 885,278"/>
+    </g>
+    <g><animateTransform attributeName="transform" type="rotate" from="240 880 440" to="600 880 440" dur="9s" repeatCount="indefinite"/>
+      <polygon points="880,268 875,278 885,278"/>
+    </g>
+  </g>
+
+  <!-- crosshair -->
+  <g stroke="#ff2b2b" stroke-width="0.6" opacity="0.5">
+    <line x1="880" y1="255" x2="880" y2="285"/>
+    <line x1="880" y1="595" x2="880" y2="625"/>
+    <line x1="645" y1="440" x2="675" y2="440"/>
+    <line x1="1085" y1="440" x2="1115" y2="440"/>
+  </g>
+
+  <!-- HUD tracking brackets -->
+  <g stroke="#ff5555" stroke-width="1.4" fill="none" opacity="0.75">
+    <path d="M700,320 L700,300 L720,300"/>
+    <path d="M1060,320 L1060,300 L1040,300"/>
+    <path d="M700,560 L700,580 L720,580"/>
+    <path d="M1060,560 L1060,580 L1040,580"/>
+  </g>
+
+  <!-- EARTH SPHERE -->
+  <g>
+    <circle cx="880" cy="440" r="148" fill="none" stroke="#ff2b2b" stroke-width="1.4" filter="url(#glowBig)"/>
+    <g clip-path="url(#earthClip)">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 880 440" to="360 880 440" dur="30s" repeatCount="indefinite"/>
+        <!-- latitude lines -->
+        <g fill="none" stroke="#ff2b2b" stroke-width="0.7" opacity="0.55">
+          <ellipse cx="880" cy="440" rx="148" ry="18"/>
+          <ellipse cx="880" cy="392" rx="130" ry="14"/>
+          <ellipse cx="880" cy="488" rx="130" ry="14"/>
+          <ellipse cx="880" cy="344" rx="95" ry="10"/>
+          <ellipse cx="880" cy="536" rx="95" ry="10"/>
+          <ellipse cx="880" cy="300" rx="50" ry="6"/>
+          <ellipse cx="880" cy="580" rx="50" ry="6"/>
+        </g>
+        <!-- longitude lines -->
+        <g fill="none" stroke="#ff2b2b" stroke-width="0.7" opacity="0.55">
+          <ellipse cx="880" cy="440" rx="148" ry="148" transform="rotate(0 880 440) scale(1)"/>
+          <ellipse cx="880" cy="440" rx="60" ry="148"/>
+          <ellipse cx="880" cy="440" rx="20" ry="148"/>
+          <ellipse cx="880" cy="440" rx="100" ry="148" transform="rotate(30 880 440)"/>
+          <ellipse cx="880" cy="440" rx="100" ry="148" transform="rotate(-30 880 440)"/>
+          <ellipse cx="880" cy="440" rx="60" ry="148" transform="rotate(60 880 440)"/>
+          <ellipse cx="880" cy="440" rx="60" ry="148" transform="rotate(-60 880 440)"/>
+        </g>
+        <!-- glowing "continents" -->
+        <g fill="#ff2b2b" opacity="0.35" filter="url(#glow)">
+          <path d="M820,400 q20,-25 55,-15 q25,8 15,30 q-10,20 -40,15 q-30,-5 -30,-30 z"/>
+          <path d="M900,460 q30,-10 45,10 q10,18 -12,28 q-25,10 -38,-8 q-10,-15 5,-30 z"/>
+          <path d="M840,500 q25,-8 35,10 q6,15 -12,20 q-20,5 -28,-8 q-6,-12 5,-22 z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- projector / energy beam -->
+  <g>
+    <path d="M820,588 L940,588 L905,650 L855,650 Z" fill="#ff0000" opacity="0.10">
+      <animate attributeName="opacity" values="0.05;0.18;0.05" dur="2.4s" repeatCount="indefinite"/>
+    </path>
+    <ellipse cx="880" cy="650" rx="55" ry="10" fill="none" stroke="#ff2b2b" stroke-width="1.2" filter="url(#glow)"/>
+    <ellipse cx="880" cy="650" rx="20" ry="4" fill="#ff2b2b" opacity="0.7"/>
+    <ellipse cx="880" cy="650" rx="55" ry="10" fill="none" stroke="#ff5555" stroke-width="0.8">
+      <animate attributeName="rx" values="20;90" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="4;18" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0" dur="2.4s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="880" cy="650" rx="55" ry="10" fill="none" stroke="#ff5555" stroke-width="0.8">
+      <animate attributeName="rx" values="20;90" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="4;18" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+</g>
+
+</svg>
