@@ -138,6 +138,12 @@
   <img src="assets/terminal.svg" width="100%" alt="Dev Terminal"/>
 </p>
 
+
+<p align="center">
+  <a href="https://github.com/sangam-cloud">
+    <img src="assets/contributions.svg" width="100%" alt="Contribution Animation"/>
+  </a>
+</p>
 ---
 
 <h2 align="center">📫 Connect & Collaborate</h2>
