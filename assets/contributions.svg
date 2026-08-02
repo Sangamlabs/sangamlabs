@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <style>
+      @keyframes glowAll {
+        0%, 100% { filter: drop-shadow(0 0 8px #e94560) drop-shadow(0 0 15px #e94560); }
+        50% { filter: drop-shadow(0 0 20px #ff6b6b) drop-shadow(0 0 40px #e94560); }
+      }
+      @keyframes glowRandom {
+        0%, 100% { filter: drop-shadow(0 0 5px #e94560); }
+        25% { filter: drop-shadow(0 0 20px #ff6b6b); }
+        50% { filter: drop-shadow(0 0 5px #e94560); }
+        75% { filter: drop-shadow(0 0 25px #ff6b6b); }
+      }
+      @keyframes glowRandom2 {
+        0%, 100% { filter: drop-shadow(0 0 5px #ff6b6b); }
+        30% { filter: drop-shadow(0 0 25px #e94560); }
+        60% { filter: drop-shadow(0 0 5px #ff6b6b); }
+        90% { filter: drop-shadow(0 0 30px #e94560); }
+      }
+      @keyframes snakeMove {
+        0% { transform: translate(0, 0); }
+        12.5% { transform: translate(40px, 0); }
+        25% { transform: translate(40px, 40px); }
+        37.5% { transform: translate(80px, 40px); }
+        50% { transform: translate(80px, 80px); }
+        62.5% { transform: translate(40px, 80px); }
+        75% { transform: translate(40px, 40px); }
+        87.5% { transform: translate(0, 40px); }
+        100% { transform: translate(0, 0); }
+      }
+      @keyframes snakeBody1 {
+        0% { transform: translate(0, 0); opacity: 1; }
+        12.5% { transform: translate(35px, 0); opacity: 1; }
+        25% { transform: translate(35px, 35px); opacity: 1; }
+        37.5% { transform: translate(70px, 35px); opacity: 1; }
+        50% { transform: translate(70px, 70px); opacity: 1; }
+        62.5% { transform: translate(35px, 70px); opacity: 1; }
+        75% { transform: translate(35px, 35px); opacity: 1; }
+        87.5% { transform: translate(0, 35px); opacity: 1; }
+        100% { transform: translate(0, 0); opacity: 1; }
+      }
+      @keyframes snakeBody2 {
+        0% { transform: translate(0, 0); opacity: 0.8; }
+        12.5% { transform: translate(30px, 0); opacity: 0.8; }
+        25% { transform: translate(30px, 30px); opacity: 0.8; }
+        37.5% { transform: translate(60px, 30px); opacity: 0.8; }
+        50% { transform: translate(60px, 60px); opacity: 0.8; }
+        62.5% { transform: translate(30px, 60px); opacity: 0.8; }
+        75% { transform: translate(30px, 30px); opacity: 0.8; }
+        87.5% { transform: translate(0, 30px); opacity: 0.8; }
+        100% { transform: translate(0, 0); opacity: 0.8; }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.8; }
+      }
+      .box { fill: #1a1a2e; stroke: #e94560; stroke-width: 2; rx: 4; }
+      .box-glow { animation: glowAll 3s ease-in-out infinite; }
+      .box-random { animation: glowRandom 4s ease-in-out infinite; }
+      .box-random2 { animation: glowRandom2 4s ease-in-out infinite 0.5s; }
+      .snake-head { fill: #e94560; animation: snakeMove 4s ease-in-out infinite; }
+      .snake-body1 { fill: #ff6b6b; animation: snakeBody1 4s ease-in-out infinite; }
+      .snake-body2 { fill: #e94560; animation: snakeBody2 4s ease-in-out infinite; }
+      .snake-food { fill: #ff6b6b; animation: pulse 1.5s ease-in-out infinite; }
+      .bg-grid { stroke: #2a2a4e; stroke-width: 0.5; opacity: 0.3; }
+      .text-title { fill: #ffffff; font-family: 'Courier New', monospace; font-size: 14px; font-weight: bold; }
+      .text-sub { fill: #8888aa; font-family: 'Courier New', monospace; font-size: 10px; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="#0a0a0a"/>
+
+  <!-- Grid -->
+  <g class="bg-grid">
+    <line x1="0" y1="50" x2="800" y2="50"/>
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="250" x2="800" y2="250"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="350" x2="800" y2="350"/>
+    <line x1="100" y1="0" x2="100" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="500" y1="0" x2="500" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+    <line x1="700" y1="0" x2="700" y2="400"/>
+  </g>
+
+  <!-- Animation 1: All Glow -->
+  <g transform="translate(20, 20)">
+    <text x="0" y="0" class="text-title">✨ ALL GLOW</text>
+    <g class="box-glow">
+      <rect class="box" x="0" y="10" width="60" height="60"/>
+      <text x="30" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">A</text>
+    </g>
+    <g class="box-glow">
+      <rect class="box" x="70" y="10" width="60" height="60"/>
+      <text x="100" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">B</text>
+    </g>
+    <g class="box-glow">
+      <rect class="box" x="140" y="10" width="60" height="60"/>
+      <text x="170" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">C</text>
+    </g>
+    <g class="box-glow">
+      <rect class="box" x="210" y="10" width="60" height="60"/>
+      <text x="240" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">D</text>
+    </g>
+    <g class="box-glow">
+      <rect class="box" x="280" y="10" width="60" height="60"/>
+      <text x="310" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">E</text>
+    </g>
+  </g>
+
+  <!-- Animation 2: Random Glow -->
+  <g transform="translate(20, 130)">
+    <text x="0" y="0" class="text-title">🎲 RANDOM GLOW</text>
+    <g class="box-random">
+      <rect class="box" x="0" y="10" width="60" height="60"/>
+      <text x="30" y="45" fill="#ff6b6b" font-family="monospace" font-size="20" text-anchor="middle">1</text>
+    </g>
+    <g class="box-random2">
+      <rect class="box" x="70" y="10" width="60" height="60"/>
+      <text x="100" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">2</text>
+    </g>
+    <g class="box-random">
+      <rect class="box" x="140" y="10" width="60" height="60"/>
+      <text x="170" y="45" fill="#ff6b6b" font-family="monospace" font-size="20" text-anchor="middle">3</text>
+    </g>
+    <g class="box-random2">
+      <rect class="box" x="210" y="10" width="60" height="60"/>
+      <text x="240" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">4</text>
+    </g>
+    <g class="box-random">
+      <rect class="box" x="280" y="10" width="60" height="60"/>
+      <text x="310" y="45" fill="#ff6b6b" font-family="monospace" font-size="20" text-anchor="middle">5</text>
+    </g>
+  </g>
+
+  <!-- Animation 3: Snake Game -->
+  <g transform="translate(420, 20)">
+    <text x="0" y="0" class="text-title">🐍 SNAKE GAME</text>
+    <rect x="0" y="10" width="360" height="280" fill="#0a0a0a" stroke="#2a2a4e" stroke-width="1" rx="4"/>
+
+    <!-- Snake Grid -->
+    <g transform="translate(20, 20)">
+      <!-- Grid lines -->
+      <g stroke="#1a1a2e" stroke-width="0.5">
+        <line x1="0" y1="30" x2="320" y2="30"/>
+        <line x1="0" y1="60" x2="320" y2="60"/>
+        <line x1="0" y1="90" x2="320" y2="90"/>
+        <line x1="0" y1="120" x2="320" y2="120"/>
+        <line x1="0" y1="150" x2="320" y2="150"/>
+        <line x1="0" y1="180" x2="320" y2="180"/>
+        <line x1="0" y1="210" x2="320" y2="210"/>
+        <line x1="0" y1="240" x2="320" y2="240"/>
+        <line x1="40" y1="0" x2="40" y2="270"/>
+        <line x1="80" y1="0" x2="80" y2="270"/>
+        <line x1="120" y1="0" x2="120" y2="270"/>
+        <line x1="160" y1="0" x2="160" y2="270"/>
+        <line x1="200" y1="0" x2="200" y2="270"/>
+        <line x1="240" y1="0" x2="240" y2="270"/>
+        <line x1="280" y1="0" x2="280" y2="270"/>
+      </g>
+
+      <!-- Snake Body -->
+      <g>
+        <rect class="snake-body2" x="40" y="30" width="38" height="28" rx="2"/>
+        <rect class="snake-body1" x="80" y="30" width="38" height="28" rx="2"/>
+        <rect class="snake-body2" x="120" y="30" width="38" height="28" rx="2"/>
+        <rect class="snake-body1" x="160" y="30" width="38" height="28" rx="2"/>
+        <rect class="snake-head" x="200" y="30" width="38" height="28" rx="4"/>
+        <!-- Snake Eyes -->
+        <circle cx="228" cy="38" r="4" fill="#0a0a0a"/>
+        <circle cx="228" cy="50" r="4" fill="#0a0a0a"/>
+      </g>
+
+      <!-- Snake Path (showing movement) -->
+      <g>
+        <rect class="snake-body2" x="40" y="60" width="38" height="28" rx="2" opacity="0.6">
+          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="snake-body1" x="80" y="60" width="38" height="28" rx="2" opacity="0.6">
+          <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="snake-body2" x="120" y="60" width="38" height="28" rx="2" opacity="0.6">
+          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="snake-body1" x="160" y="60" width="38" height="28" rx="2" opacity="0.6">
+          <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+
+      <!-- Food -->
+      <circle class="snake-food" cx="260" cy="210" r="10"/>
+      <circle class="snake-food" cx="100" cy="150" r="8">
+        <animate attributeName="r" values="8;12;8" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle class="snake-food" cx="200" cy="90" r="7">
+        <animate attributeName="r" values="7;11;7" dur="1.8s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Score -->
+      <text x="10" y="260" fill="#8888aa" font-family="monospace" font-size="12">SCORE: 42</text>
+      <text x="200" y="260" fill="#e94560" font-family="monospace" font-size="12">HIGH: 1337</text>
+    </g>
+  </g>
+
+  <!-- Bottom Status Bar -->
+  <g transform="translate(20, 360)">
+    <text x="0" y="0" fill="#8888aa" font-family="monospace" font-size="11">
+      <tspan fill="#e94560">●</tspan> LIVE  <tspan fill="#ff6b6b">●</tspan> ACTIVE  <tspan fill="#e94560">●</tspan> 42ms
+    </text>
+    <text x="400" y="0" fill="#8888aa" font-family="monospace" font-size="11">
+      SANGAM LABS v2.0
+    </text>
+    <text x="700" y="0" fill="#8888aa" font-family="monospace" font-size="11">
+      🔥 100% CHAKRA
+    </text>
+  </g>
+</svg>
