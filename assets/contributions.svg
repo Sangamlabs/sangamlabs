@@ -1,223 +1,574 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 722 162" width="722" height="162">
   <defs>
-    <style>
-      @keyframes glowAll {
-        0%, 100% { filter: drop-shadow(0 0 8px #e94560) drop-shadow(0 0 15px #e94560); }
-        50% { filter: drop-shadow(0 0 20px #ff6b6b) drop-shadow(0 0 40px #e94560); }
-      }
-      @keyframes glowRandom {
-        0%, 100% { filter: drop-shadow(0 0 5px #e94560); }
-        25% { filter: drop-shadow(0 0 20px #ff6b6b); }
-        50% { filter: drop-shadow(0 0 5px #e94560); }
-        75% { filter: drop-shadow(0 0 25px #ff6b6b); }
-      }
-      @keyframes glowRandom2 {
-        0%, 100% { filter: drop-shadow(0 0 5px #ff6b6b); }
-        30% { filter: drop-shadow(0 0 25px #e94560); }
-        60% { filter: drop-shadow(0 0 5px #ff6b6b); }
-        90% { filter: drop-shadow(0 0 30px #e94560); }
-      }
-      @keyframes snakeMove {
-        0% { transform: translate(0, 0); }
-        12.5% { transform: translate(40px, 0); }
-        25% { transform: translate(40px, 40px); }
-        37.5% { transform: translate(80px, 40px); }
-        50% { transform: translate(80px, 80px); }
-        62.5% { transform: translate(40px, 80px); }
-        75% { transform: translate(40px, 40px); }
-        87.5% { transform: translate(0, 40px); }
-        100% { transform: translate(0, 0); }
-      }
-      @keyframes snakeBody1 {
-        0% { transform: translate(0, 0); opacity: 1; }
-        12.5% { transform: translate(35px, 0); opacity: 1; }
-        25% { transform: translate(35px, 35px); opacity: 1; }
-        37.5% { transform: translate(70px, 35px); opacity: 1; }
-        50% { transform: translate(70px, 70px); opacity: 1; }
-        62.5% { transform: translate(35px, 70px); opacity: 1; }
-        75% { transform: translate(35px, 35px); opacity: 1; }
-        87.5% { transform: translate(0, 35px); opacity: 1; }
-        100% { transform: translate(0, 0); opacity: 1; }
-      }
-      @keyframes snakeBody2 {
-        0% { transform: translate(0, 0); opacity: 0.8; }
-        12.5% { transform: translate(30px, 0); opacity: 0.8; }
-        25% { transform: translate(30px, 30px); opacity: 0.8; }
-        37.5% { transform: translate(60px, 30px); opacity: 0.8; }
-        50% { transform: translate(60px, 60px); opacity: 0.8; }
-        62.5% { transform: translate(30px, 60px); opacity: 0.8; }
-        75% { transform: translate(30px, 30px); opacity: 0.8; }
-        87.5% { transform: translate(0, 30px); opacity: 0.8; }
-        100% { transform: translate(0, 0); opacity: 0.8; }
-      }
-      @keyframes pulse {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.8; }
-      }
-      .box { fill: #1a1a2e; stroke: #e94560; stroke-width: 2; rx: 4; }
-      .box-glow { animation: glowAll 3s ease-in-out infinite; }
-      .box-random { animation: glowRandom 4s ease-in-out infinite; }
-      .box-random2 { animation: glowRandom2 4s ease-in-out infinite 0.5s; }
-      .snake-head { fill: #e94560; animation: snakeMove 4s ease-in-out infinite; }
-      .snake-body1 { fill: #ff6b6b; animation: snakeBody1 4s ease-in-out infinite; }
-      .snake-body2 { fill: #e94560; animation: snakeBody2 4s ease-in-out infinite; }
-      .snake-food { fill: #ff6b6b; animation: pulse 1.5s ease-in-out infinite; }
-      .bg-grid { stroke: #2a2a4e; stroke-width: 0.5; opacity: 0.3; }
-      .text-title { fill: #ffffff; font-family: 'Courier New', monospace; font-size: 14px; font-weight: bold; }
-      .text-sub { fill: #8888aa; font-family: 'Courier New', monospace; font-size: 10px; }
-    </style>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur" opacity="0.6"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="foodGlow">
+      <stop offset="0%" stop-color="#39d353" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#39d353" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="400" fill="#0a0a0a"/>
+  <rect width="722" height="162" fill="#0d1117" rx="8"/>
 
-  <!-- Grid -->
-  <g class="bg-grid">
-    <line x1="0" y1="50" x2="800" y2="50"/>
-    <line x1="0" y1="100" x2="800" y2="100"/>
-    <line x1="0" y1="150" x2="800" y2="150"/>
-    <line x1="0" y1="200" x2="800" y2="200"/>
-    <line x1="0" y1="250" x2="800" y2="250"/>
-    <line x1="0" y1="300" x2="800" y2="300"/>
-    <line x1="0" y1="350" x2="800" y2="350"/>
-    <line x1="100" y1="0" x2="100" y2="400"/>
-    <line x1="200" y1="0" x2="200" y2="400"/>
-    <line x1="300" y1="0" x2="300" y2="400"/>
-    <line x1="400" y1="0" x2="400" y2="400"/>
-    <line x1="500" y1="0" x2="500" y2="400"/>
-    <line x1="600" y1="0" x2="600" y2="400"/>
-    <line x1="700" y1="0" x2="700" y2="400"/>
+  <!-- Container border -->
+  <rect x="0.5" y="0.5" width="721" height="161" fill="none" stroke="#30363d" stroke-width="1" rx="8"/>
+
+  <!-- Top left: "110 contributions in the last year" -->
+  <text x="16" y="28" fill="#c9d1d9" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">110 contributions in the last year</text>
+
+  <!-- Top right: "Contribution settings ▼" -->
+  <text x="616" y="28" fill="#8b949e" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="12">Contribution settings ▼</text>
+
+  <!-- Months -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="10" fill="#8b949e">
+    <text x="52" y="46">Aug</text>
+    <text x="107" y="46">Sep</text>
+    <text x="163" y="46">Oct</text>
+    <text x="218" y="46">Nov</text>
+    <text x="273" y="46">Dec</text>
+    <text x="328" y="46">Jan</text>
+    <text x="383" y="46">Feb</text>
+    <text x="438" y="46">Mar</text>
+    <text x="493" y="46">Apr</text>
+    <text x="548" y="46">May</text>
+    <text x="603" y="46">Jun</text>
+    <text x="658" y="46">Jul</text>
   </g>
 
-  <!-- Animation 1: All Glow -->
-  <g transform="translate(20, 20)">
-    <text x="0" y="0" class="text-title">✨ ALL GLOW</text>
-    <g class="box-glow">
-      <rect class="box" x="0" y="10" width="60" height="60"/>
-      <text x="30" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">A</text>
-    </g>
-    <g class="box-glow">
-      <rect class="box" x="70" y="10" width="60" height="60"/>
-      <text x="100" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">B</text>
-    </g>
-    <g class="box-glow">
-      <rect class="box" x="140" y="10" width="60" height="60"/>
-      <text x="170" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">C</text>
-    </g>
-    <g class="box-glow">
-      <rect class="box" x="210" y="10" width="60" height="60"/>
-      <text x="240" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">D</text>
-    </g>
-    <g class="box-glow">
-      <rect class="box" x="280" y="10" width="60" height="60"/>
-      <text x="310" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">E</text>
+  <!-- Day labels -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="10" fill="#8b949e">
+    <text x="16" y="72">Mon</text>
+    <text x="16" y="96">Wed</text>
+    <text x="16" y="120">Fri</text>
+  </g>
+
+  <!-- Bottom left: "Learn how we count contributions" -->
+  <text x="52" y="150" fill="#8b949e" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="11" text-decoration="underline">Learn how we count contributions</text>
+
+  <!-- Bottom right: "Less ■ ■ ■ ■ More" -->
+  <text x="568" y="150" fill="#8b949e" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="11">Less</text>
+  <rect x="606" y="143" width="10" height="10" rx="2" fill="#161b22"/>
+  <rect x="619" y="143" width="10" height="10" rx="2" fill="#0e4429"/>
+  <rect x="632" y="143" width="10" height="10" rx="2" fill="#006d32"/>
+  <rect x="645" y="143" width="10" height="10" rx="2" fill="#26a641"/>
+  <rect x="658" y="143" width="10" height="10" rx="2" fill="#39d353"/>
+  <text x="673" y="150" fill="#8b949e" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="11">More</text>
+
+  <!-- Contribution grid - 7 rows x 53 columns -->
+  <g id="grid">
+    <!-- Row 0 - Mon -->
+    <g id="row0">
+      <!-- Column 0-52 -->
+      <rect x="52" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="65" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="78" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="91" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="104" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="117" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="130" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="143" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="156" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="169" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="182" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="195" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="208" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="221" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="234" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="247" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="260" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="273" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="286" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="299" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="312" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="325" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="338" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="351" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="364" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="377" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="390" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="403" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="416" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="429" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="442" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="455" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="468" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="481" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="494" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="507" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="520" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="533" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="546" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="559" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="572" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="585" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="598" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="611" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="624" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="637" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="650" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="663" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="676" y="58" width="10" height="10" rx="2" fill="#161b22"/>
+      <rect x="689" y="58" width="10" height="10" rx="2" fill="#161b22"/>
     </g>
   </g>
 
-  <!-- Animation 2: Random Glow -->
-  <g transform="translate(20, 130)">
-    <text x="0" y="0" class="text-title">🎲 RANDOM GLOW</text>
-    <g class="box-random">
-      <rect class="box" x="0" y="10" width="60" height="60"/>
-      <text x="30" y="45" fill="#ff6b6b" font-family="monospace" font-size="20" text-anchor="middle">1</text>
-    </g>
-    <g class="box-random2">
-      <rect class="box" x="70" y="10" width="60" height="60"/>
-      <text x="100" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">2</text>
-    </g>
-    <g class="box-random">
-      <rect class="box" x="140" y="10" width="60" height="60"/>
-      <text x="170" y="45" fill="#ff6b6b" font-family="monospace" font-size="20" text-anchor="middle">3</text>
-    </g>
-    <g class="box-random2">
-      <rect class="box" x="210" y="10" width="60" height="60"/>
-      <text x="240" y="45" fill="#e94560" font-family="monospace" font-size="20" text-anchor="middle">4</text>
-    </g>
-    <g class="box-random">
-      <rect class="box" x="280" y="10" width="60" height="60"/>
-      <text x="310" y="45" fill="#ff6b6b" font-family="monospace" font-size="20" text-anchor="middle">5</text>
-    </g>
-  </g>
+  <!-- STAGE 1: Global Glow - Animation travels left to right -->
+  <g id="stage1" opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" dur="9.6s" repeatCount="indefinite" keyTimes="0;0.05;0.15;0.7;0.8;1"/>
 
-  <!-- Animation 3: Snake Game -->
-  <g transform="translate(420, 20)">
-    <text x="0" y="0" class="text-title">🐍 SNAKE GAME</text>
-    <rect x="0" y="10" width="360" height="280" fill="#0a0a0a" stroke="#2a2a4e" stroke-width="1" rx="4"/>
+    <!-- Glow mask that moves left to right -->
+    <mask id="glowMask1">
+      <rect x="52" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="65" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <!-- Continue for all cells... -->
+      <rect x="78" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="91" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="104" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="117" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="130" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="143" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="156" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="169" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="182" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="195" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="208" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="221" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="234" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="247" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="260" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="273" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="286" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="299" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="312" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="325" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="338" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="351" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="364" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="377" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="390" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="403" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="416" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="429" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="442" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="455" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="468" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="481" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="494" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="507" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="520" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="533" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="546" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="559" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="572" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="585" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="598" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="611" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="624" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="637" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="650" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="663" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="676" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+      <rect x="689" y="58" width="10" height="10" fill="white" opacity="0">
+        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
+      </rect>
+    </mask>
 
-    <!-- Snake Grid -->
-    <g transform="translate(20, 20)">
-      <!-- Grid lines -->
-      <g stroke="#1a1a2e" stroke-width="0.5">
-        <line x1="0" y1="30" x2="320" y2="30"/>
-        <line x1="0" y1="60" x2="320" y2="60"/>
-        <line x1="0" y1="90" x2="320" y2="90"/>
-        <line x1="0" y1="120" x2="320" y2="120"/>
-        <line x1="0" y1="150" x2="320" y2="150"/>
-        <line x1="0" y1="180" x2="320" y2="180"/>
-        <line x1="0" y1="210" x2="320" y2="210"/>
-        <line x1="0" y1="240" x2="320" y2="240"/>
-        <line x1="40" y1="0" x2="40" y2="270"/>
-        <line x1="80" y1="0" x2="80" y2="270"/>
-        <line x1="120" y1="0" x2="120" y2="270"/>
-        <line x1="160" y1="0" x2="160" y2="270"/>
-        <line x1="200" y1="0" x2="200" y2="270"/>
-        <line x1="240" y1="0" x2="240" y2="270"/>
-        <line x1="280" y1="0" x2="280" y2="270"/>
+    <!-- Glowing cells -->
+    <g mask="url(#glowMask1)" filter="url(#glow)">
+      <!-- All cells with green glow -->
+      <g fill="#39d353" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="1s" repeatCount="indefinite"/>
+        <!-- Generate all cells with positions -->
+        <rect x="52" y="58" width="10" height="10" rx="2"/>
+        <rect x="65" y="58" width="10" height="10" rx="2"/>
+        <rect x="78" y="58" width="10" height="10" rx="2"/>
+        <rect x="91" y="58" width="10" height="10" rx="2"/>
+        <rect x="104" y="58" width="10" height="10" rx="2"/>
+        <rect x="117" y="58" width="10" height="10" rx="2"/>
+        <rect x="130" y="58" width="10" height="10" rx="2"/>
+        <rect x="143" y="58" width="10" height="10" rx="2"/>
+        <rect x="156" y="58" width="10" height="10" rx="2"/>
+        <rect x="169" y="58" width="10" height="10" rx="2"/>
+        <rect x="182" y="58" width="10" height="10" rx="2"/>
+        <rect x="195" y="58" width="10" height="10" rx="2"/>
+        <rect x="208" y="58" width="10" height="10" rx="2"/>
+        <rect x="221" y="58" width="10" height="10" rx="2"/>
+        <rect x="234" y="58" width="10" height="10" rx="2"/>
+        <rect x="247" y="58" width="10" height="10" rx="2"/>
+        <rect x="260" y="58" width="10" height="10" rx="2"/>
+        <rect x="273" y="58" width="10" height="10" rx="2"/>
+        <rect x="286" y="58" width="10" height="10" rx="2"/>
+        <rect x="299" y="58" width="10" height="10" rx="2"/>
+        <rect x="312" y="58" width="10" height="10" rx="2"/>
+        <rect x="325" y="58" width="10" height="10" rx="2"/>
+        <rect x="338" y="58" width="10" height="10" rx="2"/>
+        <rect x="351" y="58" width="10" height="10" rx="2"/>
+        <rect x="364" y="58" width="10" height="10" rx="2"/>
+        <rect x="377" y="58" width="10" height="10" rx="2"/>
+        <rect x="390" y="58" width="10" height="10" rx="2"/>
+        <rect x="403" y="58" width="10" height="10" rx="2"/>
+        <rect x="416" y="58" width="10" height="10" rx="2"/>
+        <rect x="429" y="58" width="10" height="10" rx="2"/>
+        <rect x="442" y="58" width="10" height="10" rx="2"/>
+        <rect x="455" y="58" width="10" height="10" rx="2"/>
+        <rect x="468" y="58" width="10" height="10" rx="2"/>
+        <rect x="481" y="58" width="10" height="10" rx="2"/>
+        <rect x="494" y="58" width="10" height="10" rx="2"/>
+        <rect x="507" y="58" width="10" height="10" rx="2"/>
+        <rect x="520" y="58" width="10" height="10" rx="2"/>
+        <rect x="533" y="58" width="10" height="10" rx="2"/>
+        <rect x="546" y="58" width="10" height="10" rx="2"/>
+        <rect x="559" y="58" width="10" height="10" rx="2"/>
+        <rect x="572" y="58" width="10" height="10" rx="2"/>
+        <rect x="585" y="58" width="10" height="10" rx="2"/>
+        <rect x="598" y="58" width="10" height="10" rx="2"/>
+        <rect x="611" y="58" width="10" height="10" rx="2"/>
+        <rect x="624" y="58" width="10" height="10" rx="2"/>
+        <rect x="637" y="58" width="10" height="10" rx="2"/>
+        <rect x="650" y="58" width="10" height="10" rx="2"/>
+        <rect x="663" y="58" width="10" height="10" rx="2"/>
+        <rect x="676" y="58" width="10" height="10" rx="2"/>
+        <rect x="689" y="58" width="10" height="10" rx="2"/>
       </g>
+    </g>
+  </g>
 
-      <!-- Snake Body -->
+  <!-- STAGE 2: Random Contributions -->
+  <g id="stage2" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;1;1;0" dur="9.6s" repeatCount="indefinite" keyTimes="0;0.25;0.35;0.4;0.65;0.75"/>
+
+    <!-- Randomly animated cells with different intensities -->
+    <g>
+      <!-- Level 1 - Light green -->
       <g>
-        <rect class="snake-body2" x="40" y="30" width="38" height="28" rx="2"/>
-        <rect class="snake-body1" x="80" y="30" width="38" height="28" rx="2"/>
-        <rect class="snake-body2" x="120" y="30" width="38" height="28" rx="2"/>
-        <rect class="snake-body1" x="160" y="30" width="38" height="28" rx="2"/>
-        <rect class="snake-head" x="200" y="30" width="38" height="28" rx="4"/>
-        <!-- Snake Eyes -->
-        <circle cx="228" cy="38" r="4" fill="#0a0a0a"/>
-        <circle cx="228" cy="50" r="4" fill="#0a0a0a"/>
+        <rect x="65" y="58" width="10" height="10" rx="2" fill="#0e4429">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.2s" repeatCount="indefinite" keyTimes="0;0.2;0.8;1"/>
+        </rect>
+        <rect x="130" y="58" width="10" height="10" rx="2" fill="#0e4429">
+          <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" repeatCount="indefinite" keyTimes="0;0.1;0.9;1"/>
+        </rect>
+        <rect x="247" y="58" width="10" height="10" rx="2" fill="#0e4429">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.5s" repeatCount="indefinite" keyTimes="0;0.3;0.7;1"/>
+        </rect>
+        <rect x="364" y="58" width="10" height="10" rx="2" fill="#0e4429">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.1s" repeatCount="indefinite" keyTimes="0;0.15;0.85;1"/>
+        </rect>
+        <rect x="481" y="58" width="10" height="10" rx="2" fill="#0e4429">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.4s" repeatCount="indefinite" keyTimes="0;0.25;0.75;1"/>
+        </rect>
+        <rect x="598" y="58" width="10" height="10" rx="2" fill="#0e4429">
+          <animate attributeName="opacity" values="0;1;1;0" dur="0.8s" repeatCount="indefinite" keyTimes="0;0.1;0.9;1"/>
+        </rect>
       </g>
 
-      <!-- Snake Path (showing movement) -->
+      <!-- Level 2 - Medium green -->
       <g>
-        <rect class="snake-body2" x="40" y="60" width="38" height="28" rx="2" opacity="0.6">
-          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+        <rect x="78" y="70" width="10" height="10" rx="2" fill="#006d32">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.8s" repeatCount="indefinite" keyTimes="0;0.05;0.25;0.75;0.95;1"/>
         </rect>
-        <rect class="snake-body1" x="80" y="60" width="38" height="28" rx="2" opacity="0.6">
-          <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+        <rect x="169" y="70" width="10" height="10" rx="2" fill="#006d32">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.1s" repeatCount="indefinite" keyTimes="0;0.1;0.3;0.7;0.9;1"/>
         </rect>
-        <rect class="snake-body2" x="120" y="60" width="38" height="28" rx="2" opacity="0.6">
-          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+        <rect x="299" y="70" width="10" height="10" rx="2" fill="#006d32">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.5s" repeatCount="indefinite" keyTimes="0;0.05;0.2;0.8;0.95;1"/>
         </rect>
-        <rect class="snake-body1" x="160" y="60" width="38" height="28" rx="2" opacity="0.6">
-          <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+        <rect x="416" y="70" width="10" height="10" rx="2" fill="#006d32">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.3s" repeatCount="indefinite" keyTimes="0;0.15;0.35;0.65;0.85;1"/>
+        </rect>
+        <rect x="533" y="70" width="10" height="10" rx="2" fill="#006d32">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.9s" repeatCount="indefinite" keyTimes="0;0.08;0.28;0.72;0.92;1"/>
+        </rect>
+        <rect x="650" y="70" width="10" height="10" rx="2" fill="#006d32">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.0s" repeatCount="indefinite" keyTimes="0;0.12;0.32;0.68;0.88;1"/>
         </rect>
       </g>
 
-      <!-- Food -->
-      <circle class="snake-food" cx="260" cy="210" r="10"/>
-      <circle class="snake-food" cx="100" cy="150" r="8">
-        <animate attributeName="r" values="8;12;8" dur="1.5s" repeatCount="indefinite"/>
-      </circle>
-      <circle class="snake-food" cx="200" cy="90" r="7">
-        <animate attributeName="r" values="7;11;7" dur="1.8s" repeatCount="indefinite"/>
-      </circle>
+      <!-- Level 3 - Bright green -->
+      <g>
+        <rect x="104" y="82" width="10" height="10" rx="2" fill="#26a641">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.4s" repeatCount="indefinite" keyTimes="0;0.05;0.2;0.8;0.95;1"/>
+        </rect>
+        <rect x="221" y="82" width="10" height="10" rx="2" fill="#26a641">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.7s" repeatCount="indefinite" keyTimes="0;0.1;0.3;0.7;0.9;1"/>
+        </rect>
+        <rect x="338" y="82" width="10" height="10" rx="2" fill="#26a641">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.2s" repeatCount="indefinite" keyTimes="0;0.15;0.35;0.65;0.85;1"/>
+        </rect>
+        <rect x="455" y="82" width="10" height="10" rx="2" fill="#26a641">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.6s" repeatCount="indefinite" keyTimes="0;0.08;0.28;0.72;0.92;1"/>
+        </rect>
+        <rect x="572" y="82" width="10" height="10" rx="2" fill="#26a641">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.4s" repeatCount="indefinite" keyTimes="0;0.12;0.32;0.68;0.88;1"/>
+        </rect>
+        <rect x="676" y="82" width="10" height="10" rx="2" fill="#26a641">
+          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.3s" repeatCount="indefinite" keyTimes="0;0.05;0.25;0.75;0.95;1"/>
+        </rect>
+      </g>
 
-      <!-- Score -->
-      <text x="10" y="260" fill="#8888aa" font-family="monospace" font-size="12">SCORE: 42</text>
-      <text x="200" y="260" fill="#e94560" font-family="monospace" font-size="12">HIGH: 1337</text>
+      <!-- Level 4 - Brightest green -->
+      <g>
+        <rect x="143" y="94" width="10" height="10" rx="2" fill="#39d353">
+          <animate attributeName="opacity" values="0;1;1;0" dur="0.8s" repeatCount="indefinite" keyTimes="0;0.1;0.9;1"/>
+        </rect>
+        <rect x="273" y="94" width="10" height="10" rx="2" fill="#39d353">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.1s" repeatCount="indefinite" keyTimes="0;0.2;0.8;1"/>
+        </rect>
+        <rect x="403" y="94" width="10" height="10" rx="2" fill="#39d353">
+          <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" repeatCount="indefinite" keyTimes="0;0.15;0.85;1"/>
+        </rect>
+        <rect x="520" y="94" width="10" height="10" rx="2" fill="#39d353">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.3s" repeatCount="indefinite" keyTimes="0;0.25;0.75;1"/>
+        </rect>
+        <rect x="611" y="94" width="10" height="10" rx="2" fill="#39d353">
+          <animate attributeName="opacity" values="0;1;1;0" dur="1.0s" repeatCount="indefinite" keyTimes="0;0.18;0.82;1"/>
+        </rect>
+        <rect x="689" y="94" width="10" height="10" rx="2" fill="#39d353">
+          <animate attributeName="opacity" values="0;1;1;0" dur="0.7s" repeatCount="indefinite" keyTimes="0;0.1;0.9;1"/>
+        </rect>
+      </g>
+
+      <!-- More random cells in row 0 -->
+      <rect x="91" y="58" width="10" height="10" rx="2" fill="#006d32">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.6s" repeatCount="indefinite" keyTimes="0;0.05;0.3;0.7;0.95;1"/>
+      </rect>
+      <rect x="208" y="58" width="10" height="10" rx="2" fill="#26a641">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.9s" repeatCount="indefinite" keyTimes="0;0.1;0.35;0.65;0.9;1"/>
+      </rect>
+      <rect x="325" y="58" width="10" height="10" rx="2" fill="#0e4429">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.0s" repeatCount="indefinite" keyTimes="0;0.08;0.25;0.75;0.92;1"/>
+      </rect>
+      <rect x="442" y="58" width="10" height="10" rx="2" fill="#39d353">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.3s" repeatCount="indefinite" keyTimes="0;0.05;0.2;0.8;0.95;1"/>
+      </rect>
+      <rect x="559" y="58" width="10" height="10" rx="2" fill="#006d32">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.2s" repeatCount="indefinite" keyTimes="0;0.15;0.4;0.6;0.85;1"/>
+      </rect>
+      <rect x="663" y="58" width="10" height="10" rx="2" fill="#26a641">
+        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.7s" repeatCount="indefinite" keyTimes="0;0.12;0.32;0.68;0.88;1"/>
+      </rect>
     </g>
   </g>
 
-  <!-- Bottom Status Bar -->
-  <g transform="translate(20, 360)">
-    <text x="0" y="0" fill="#8888aa" font-family="monospace" font-size="11">
-      <tspan fill="#e94560">●</tspan> LIVE  <tspan fill="#ff6b6b">●</tspan> ACTIVE  <tspan fill="#e94560">●</tspan> 42ms
-    </text>
-    <text x="400" y="0" fill="#8888aa" font-family="monospace" font-size="11">
-      SANGAM LABS v2.0
-    </text>
-    <text x="700" y="0" fill="#8888aa" font-family="monospace" font-size="11">
-      🔥 100% CHAKRA
-    </text>
+  <!-- STAGE 3: Snake Mode -->
+  <g id="stage3" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;0;1;1;0" dur="9.6s" repeatCount="indefinite" keyTimes="0;0.65;0.7;0.75;0.8;0.9;0.95"/>
+
+    <!-- Snake head -->
+    <g>
+      <rect x="273" y="58" width="10" height="10" rx="2" fill="#39d353" filter="url(#softGlow)">
+        <animate attributeName="x" values="273;273;325;325;377;377;429;429;481;481;533;533;585;585;637;637;689;689;637;637;585;585;533;533;481;481;429;429;377;377;325;325;273;273" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
+      </rect>
+      <!-- Snake eyes -->
+      <circle r="1.5" fill="#0d1117">
+        <animate attributeName="cx" values="277;277;329;329;381;381;433;433;485;485;537;537;589;589;641;641;693;693;641;641;589;589;537;537;485;485;433;433;381;381;329;329;277;277" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="60;72;72;84;84;96;96;84;84;72;72;60;60;72;72;84;84;96;96;84;84;72;72;60;60;72;72;84;84;96;96;84;84;72;72" dur="2.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="1.5" fill="#0d1117">
+        <animate attributeName="cx" values="281;281;333;333;385;385;437;437;489;489;541;541;593;593;645;645;697;697;645;645;593;593;541;541;489;489;437;437;385;385;333;333;281;281" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="60;72;72;84;84;96;96;84;84;72;72;60;60;72;72;84;84;96;96;84;84;72;72;60;60;72;72;84;84;96;96;84;84;72;72" dur="2.8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Snake body segments with trailing effect -->
+    <g opacity="0.8">
+      <rect x="260" y="58" width="10" height="10" rx="2" fill="#26a641">
+        <animate attributeName="x" values="260;260;312;312;364;364;416;416;468;468;520;520;572;572;624;624;676;676;624;624;572;572;520;520;468;468;416;416;364;364;312;312;260;260" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    <g opacity="0.6">
+      <rect x="247" y="58" width="10" height="10" rx="2" fill="#26a641">
+        <animate attributeName="x" values="247;247;299;299;351;351;403;403;455;455;507;507;559;559;611;611;663;663;611;611;559;559;507;507;455;455;403;403;351;351;299;299;247;247" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    <g opacity="0.4">
+      <rect x="234" y="58" width="10" height="10" rx="2" fill="#006d32">
+        <animate attributeName="x" values="234;234;286;286;338;338;390;390;442;442;494;494;546;546;598;598;650;650;598;598;546;546;494;494;442;442;390;390;338;338;286;286;234;234" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    <g opacity="0.2">
+      <rect x="221" y="58" width="10" height="10" rx="2" fill="#006d32">
+        <animate attributeName="x" values="221;221;273;273;325;325;377;377;429;429;481;481;533;533;585;585;637;637;585;585;533;533;481;481;429;429;377;377;325;325;273;273;221;221" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+
+    <!-- Food items that appear and pulse -->
+    <circle cx="585" cy="106" r="4" fill="#39d353" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="0.8s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="4;5;4" dur="0.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="351" cy="106" r="4" fill="#39d353" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="4;5.5;4" dur="1.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="468" cy="58" r="4" fill="#39d353" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.25;0.7" dur="0.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="4;5;4" dur="0.9s" repeatCount="indefinite"/>
+    </circle>
   </g>
 </svg>
