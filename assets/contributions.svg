@@ -1,574 +1,584 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 722 162" width="722" height="162">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 180" width="840" height="180" style="background-color: #22272e; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
   <defs>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+    <!-- Soft, contained glow filters -->
+    <filter id="head-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.8" result="blur" />
       <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
-    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
+
+    <filter id="scan-glow" x="-20%" y="-10%" width="140%" height="120%">
+      <feGaussianBlur stdDeviation="1.0" result="blur" />
       <feMerge>
-        <feMergeNode in="blur" opacity="0.6"/>
-        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
-    <radialGradient id="foodGlow">
-      <stop offset="0%" stop-color="#39d353" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#39d353" stop-opacity="0"/>
-    </radialGradient>
+
+    <!-- Clip path to keep all glow and beams strictly inside contribution grid -->
+    <clipPath id="graph-area-clip">
+      <rect x="38" y="52" width="689" height="91" rx="2" />
+    </clipPath>
+
+    <!-- Thinner, high-contrast laser scan beam gradient (one column width) -->
+    <linearGradient id="scan-beam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#39d353" stop-opacity="0" />
+      <stop offset="20%" stop-color="#39d353" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="80%" stop-color="#39d353" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#39d353" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Snake Motion Path -->
+    <path id="snake-path" d="M 43,57 L 43,70 L 43,83 L 43,96 L 43,109 L 43,122 L 43,135 L 56,135 L 56,122 L 56,109 L 56,96 L 56,83 L 56,70 L 56,57 L 69,57 L 69,70 L 69,83 L 69,96 L 69,109 L 69,122 L 69,135 L 82,135 L 82,122 L 82,109 L 82,96 L 82,83 L 82,70 L 82,57 L 95,57 L 95,70 L 95,83 L 95,96 L 95,109 L 95,122 L 95,135 L 108,135 L 108,122 L 108,109 L 108,96 L 108,83 L 108,70 L 108,57 L 121,57 L 121,70 L 121,83 L 121,96 L 121,109 L 121,122 L 121,135 L 134,135 L 134,122 L 134,109 L 134,96 L 134,83 L 134,70 L 134,57 L 147,57 L 147,70 L 147,83 L 147,96 L 147,109 L 147,122 L 147,135 L 160,135 L 160,122 L 160,109 L 160,96 L 160,83 L 160,70 L 160,57 L 173,57 L 173,70 L 173,83 L 173,96 L 173,109 L 173,122 L 173,135 L 186,135 L 186,122 L 186,109 L 186,96 L 186,83 L 186,70 L 186,57 L 199,57 L 199,70 L 199,83 L 199,96 L 199,109 L 199,122 L 199,135 L 212,135 L 212,122 L 212,109 L 212,96 L 212,83 L 212,70 L 212,57 L 225,57 L 225,70 L 225,83 L 225,96 L 225,109 L 225,122 L 225,135 L 238,135 L 238,122 L 238,109 L 238,96 L 238,83 L 238,70 L 238,57 L 251,57 L 251,70 L 251,83 L 251,96 L 251,109 L 251,122 L 251,135 L 264,135 L 264,122 L 264,109 L 264,96 L 264,83 L 264,70 L 264,57 L 277,57 L 277,70 L 277,83 L 277,96 L 277,109 L 277,122 L 277,135 L 290,135 L 290,122 L 290,109 L 290,96 L 290,83 L 290,70 L 290,57 L 303,57 L 303,70 L 303,83 L 303,96 L 303,109 L 303,122 L 303,135 L 316,135 L 316,122 L 316,109 L 316,96 L 316,83 L 316,70 L 316,57 L 329,57 L 329,70 L 329,83 L 329,96 L 329,109 L 329,122 L 329,135 L 342,135 L 342,122 L 342,109 L 342,96 L 342,83 L 342,70 L 342,57 L 355,57 L 355,70 L 355,83 L 355,96 L 355,109 L 355,122 L 355,135 L 368,135 L 368,122 L 368,109 L 368,96 L 368,83 L 368,70 L 368,57 L 381,57 L 381,70 L 381,83 L 381,96 L 381,109 L 381,122 L 381,135 L 394,135 L 394,122 L 394,109 L 394,96 L 394,83 L 394,70 L 394,57 L 407,57 L 407,70 L 407,83 L 407,96 L 407,109 L 407,122 L 407,135 L 420,135 L 420,122 L 420,109 L 420,96 L 420,83 L 420,70 L 420,57 L 433,57 L 433,70 L 433,83 L 433,96 L 433,109 L 433,122 L 433,135 L 446,135 L 446,122 L 446,109 L 446,96 L 446,83 L 446,70 L 446,57 L 459,57 L 459,70 L 459,83 L 459,96 L 459,109 L 459,122 L 459,135 L 472,135 L 472,122 L 472,109 L 472,96 L 472,83 L 472,70 L 472,57 L 485,57 L 485,70 L 485,83 L 485,96 L 485,109 L 485,122 L 485,135 L 498,135 L 498,122 L 498,109 L 498,96 L 498,83 L 498,70 L 498,57 L 511,57 L 511,70 L 511,83 L 511,96 L 511,109 L 511,122 L 511,135 L 524,135 L 524,122 L 524,109 L 524,96 L 524,83 L 524,70 L 524,57 L 537,57 L 537,70 L 537,83 L 537,96 L 537,109 L 537,122 L 537,135 L 550,135 L 550,122 L 550,109 L 550,96 L 550,83 L 550,70 L 550,57 L 563,57 L 563,70 L 563,83 L 563,96 L 563,109 L 563,122 L 563,135 L 576,135 L 576,122 L 576,109 L 576,96 L 576,83 L 576,70 L 576,57 L 589,57 L 589,70 L 589,83 L 589,96 L 589,109 L 589,122 L 589,135 L 602,135 L 602,122 L 602,109 L 602,96 L 602,83 L 602,70 L 602,57 L 615,57 L 615,70 L 615,83 L 615,96 L 615,109 L 615,122 L 615,135 L 628,135 L 628,122 L 628,109 L 628,96 L 628,83 L 628,70 L 628,57 L 641,57 L 641,70 L 641,83 L 641,96 L 641,109 L 641,122 L 641,135 L 654,135 L 654,122 L 654,109 L 654,96 L 654,83 L 654,70 L 654,57 L 667,57 L 667,70 L 667,83 L 667,96 L 667,109 L 667,122 L 667,135 L 680,135 L 680,122 L 680,109 L 680,96 L 680,83 L 680,70 L 680,57 L 693,57 L 693,70 L 693,83 L 693,96 L 693,109 L 693,122 L 693,135 L 706,135 L 706,122 L 706,109 L 706,96 L 706,83 L 706,70 L 706,57 L 719,57 L 719,70 L 719,83 L 719,96 L 719,109 L 719,122 L 719,135 L 706,135 L 693,135 L 680,135 L 667,135 L 654,135 L 641,135 L 628,135 L 615,135 L 602,135 L 589,135 L 576,135 L 563,135 L 550,135 L 537,135 L 524,135 L 511,135 L 498,135 L 485,135 L 472,135 L 459,135 L 446,135 L 433,135 L 420,135 L 407,135 L 394,135 L 381,135 L 368,135 L 355,135 L 342,135 L 329,135 L 316,135 L 303,135 L 290,135 L 277,135 L 264,135 L 251,135 L 238,135 L 225,135 L 212,135 L 199,135 L 186,135 L 173,135 L 160,135 L 147,135 L 134,135 L 121,135 L 108,135 L 95,135 L 82,135 L 69,135 L 56,135 L 43,135 L 43,122 L 43,109 L 43,96 L 43,83 L 43,70 L 43,57" />
   </defs>
 
-  <!-- Background -->
-  <rect width="722" height="162" fill="#0d1117" rx="8"/>
+  <style>
+    .gh-text {
+      font-size: 11px;
+      fill: #768390;
+      font-weight: 400;
+    }
+    .gh-header-text {
+      font-size: 14px;
+      fill: #adbac7;
+      font-weight: 600;
+    }
+    .gh-sub-link {
+      font-size: 12px;
+      fill: #768390;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    .gh-footer-link {
+      font-size: 11px;
+      fill: #539bf5;
+      text-decoration: none;
+    }
+    .cell {
+      shape-rendering: geometricPrecision;
+    }
+  </style>
 
-  <!-- Container border -->
-  <rect x="0.5" y="0.5" width="721" height="161" fill="none" stroke="#30363d" stroke-width="1" rx="8"/>
+  <!-- Outer Card Container -->
+  <rect x="0.5" y="0.5" width="839" height="179" rx="6" fill="#22272e" stroke="#444c56" stroke-width="1" />
 
-  <!-- Top left: "110 contributions in the last year" -->
-  <text x="16" y="28" fill="#c9d1d9" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">110 contributions in the last year</text>
+  <!-- Header Section -->
+  <text x="38" y="25" class="gh-header-text">110 contributions in the last year</text>
+  <text x="802" y="25" class="gh-sub-link" text-anchor="end">Contribution Settings ▼</text>
 
-  <!-- Top right: "Contribution settings ▼" -->
-  <text x="616" y="28" fill="#8b949e" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="12">Contribution settings ▼</text>
+  <!-- Month Labels (53 Columns mapping) -->
+  <text x="38" y="42" class="gh-text">Aug</text>
+  <text x="90" y="42" class="gh-text">Sep</text>
+  <text x="155" y="42" class="gh-text">Oct</text>
+  <text x="207" y="42" class="gh-text">Nov</text>
+  <text x="272" y="42" class="gh-text">Dec</text>
+  <text x="324" y="42" class="gh-text">Jan</text>
+  <text x="389" y="42" class="gh-text">Feb</text>
+  <text x="441" y="42" class="gh-text">Mar</text>
+  <text x="506" y="42" class="gh-text">Apr</text>
+  <text x="558" y="42" class="gh-text">May</text>
+  <text x="610" y="42" class="gh-text">Jun</text>
+  <text x="675" y="42" class="gh-text">Jul</text>
 
-  <!-- Months -->
-  <g font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="10" fill="#8b949e">
-    <text x="52" y="46">Aug</text>
-    <text x="107" y="46">Sep</text>
-    <text x="163" y="46">Oct</text>
-    <text x="218" y="46">Nov</text>
-    <text x="273" y="46">Dec</text>
-    <text x="328" y="46">Jan</text>
-    <text x="383" y="46">Feb</text>
-    <text x="438" y="46">Mar</text>
-    <text x="493" y="46">Apr</text>
-    <text x="548" y="46">May</text>
-    <text x="603" y="46">Jun</text>
-    <text x="658" y="46">Jul</text>
+  <!-- Day of Week Labels (Mon, Wed, Fri) -->
+  <text x="18" y="73" class="gh-text">Mon</text>
+  <text x="18" y="99" class="gh-text">Wed</text>
+  <text x="18" y="125" class="gh-text">Fri</text>
+
+  <!-- Contribution Cells Grid (53 Columns x 7 Rows = 371 Cells) -->
+  <g id="contribution-cells">
+    <rect id="cell-0-0" x="38" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 1, row 1</title></rect>
+    <rect id="cell-0-1" x="38" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 1, row 2</title></rect>
+    <rect id="cell-0-2" x="38" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 1, row 3</title></rect>
+    <rect id="cell-0-3" x="38" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 1, row 4</title></rect>
+    <rect id="cell-0-4" x="38" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 1, row 5</title></rect>
+    <rect id="cell-0-5" x="38" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 1, row 6</title></rect>
+    <rect id="cell-0-6" x="38" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 1, row 7</title></rect>
+    <rect id="cell-1-0" x="51" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 2, row 1</title></rect>
+    <rect id="cell-1-1" x="51" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 2, row 2</title></rect>
+    <rect id="cell-1-2" x="51" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 2, row 3</title></rect>
+    <rect id="cell-1-3" x="51" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 2, row 4</title></rect>
+    <rect id="cell-1-4" x="51" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 2, row 5</title></rect>
+    <rect id="cell-1-5" x="51" y="117" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 2, row 6</title></rect>
+    <rect id="cell-1-6" x="51" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 2, row 7</title></rect>
+    <rect id="cell-2-0" x="64" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 3, row 1</title></rect>
+    <rect id="cell-2-1" x="64" y="65" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 3, row 2</title></rect>
+    <rect id="cell-2-2" x="64" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 3, row 3</title></rect>
+    <rect id="cell-2-3" x="64" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 3, row 4</title></rect>
+    <rect id="cell-2-4" x="64" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 3, row 5</title></rect>
+    <rect id="cell-2-5" x="64" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 3, row 6</title></rect>
+    <rect id="cell-2-6" x="64" y="130" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 3, row 7</title></rect>
+    <rect id="cell-3-0" x="77" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 4, row 1</title></rect>
+    <rect id="cell-3-1" x="77" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 4, row 2</title></rect>
+    <rect id="cell-3-2" x="77" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 4, row 3</title></rect>
+    <rect id="cell-3-3" x="77" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 4, row 4</title></rect>
+    <rect id="cell-3-4" x="77" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 4, row 5</title></rect>
+    <rect id="cell-3-5" x="77" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 4, row 6</title></rect>
+    <rect id="cell-3-6" x="77" y="130" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 4, row 7</title></rect>
+    <rect id="cell-4-0" x="90" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 5, row 1</title></rect>
+    <rect id="cell-4-1" x="90" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 5, row 2</title></rect>
+    <rect id="cell-4-2" x="90" y="78" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 5, row 3</title></rect>
+    <rect id="cell-4-3" x="90" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 5, row 4</title></rect>
+    <rect id="cell-4-4" x="90" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 5, row 5</title></rect>
+    <rect id="cell-4-5" x="90" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 5, row 6</title></rect>
+    <rect id="cell-4-6" x="90" y="130" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 5, row 7</title></rect>
+    <rect id="cell-5-0" x="103" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 6, row 1</title></rect>
+    <rect id="cell-5-1" x="103" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 6, row 2</title></rect>
+    <rect id="cell-5-2" x="103" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 6, row 3</title></rect>
+    <rect id="cell-5-3" x="103" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 6, row 4</title></rect>
+    <rect id="cell-5-4" x="103" y="104" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>13 contributions on col 6, row 5</title></rect>
+    <rect id="cell-5-5" x="103" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 6, row 6</title></rect>
+    <rect id="cell-5-6" x="103" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 6, row 7</title></rect>
+    <rect id="cell-6-0" x="116" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 7, row 1</title></rect>
+    <rect id="cell-6-1" x="116" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 7, row 2</title></rect>
+    <rect id="cell-6-2" x="116" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 7, row 3</title></rect>
+    <rect id="cell-6-3" x="116" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 7, row 4</title></rect>
+    <rect id="cell-6-4" x="116" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 7, row 5</title></rect>
+    <rect id="cell-6-5" x="116" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 7, row 6</title></rect>
+    <rect id="cell-6-6" x="116" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 7, row 7</title></rect>
+    <rect id="cell-7-0" x="129" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 8, row 1</title></rect>
+    <rect id="cell-7-1" x="129" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 8, row 2</title></rect>
+    <rect id="cell-7-2" x="129" y="78" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>13 contributions on col 8, row 3</title></rect>
+    <rect id="cell-7-3" x="129" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 8, row 4</title></rect>
+    <rect id="cell-7-4" x="129" y="104" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 8, row 5</title></rect>
+    <rect id="cell-7-5" x="129" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 8, row 6</title></rect>
+    <rect id="cell-7-6" x="129" y="130" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 8, row 7</title></rect>
+    <rect id="cell-8-0" x="142" y="52" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 9, row 1</title></rect>
+    <rect id="cell-8-1" x="142" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 9, row 2</title></rect>
+    <rect id="cell-8-2" x="142" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 9, row 3</title></rect>
+    <rect id="cell-8-3" x="142" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 9, row 4</title></rect>
+    <rect id="cell-8-4" x="142" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 9, row 5</title></rect>
+    <rect id="cell-8-5" x="142" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 9, row 6</title></rect>
+    <rect id="cell-8-6" x="142" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 9, row 7</title></rect>
+    <rect id="cell-9-0" x="155" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 10, row 1</title></rect>
+    <rect id="cell-9-1" x="155" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 10, row 2</title></rect>
+    <rect id="cell-9-2" x="155" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 10, row 3</title></rect>
+    <rect id="cell-9-3" x="155" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 10, row 4</title></rect>
+    <rect id="cell-9-4" x="155" y="104" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 10, row 5</title></rect>
+    <rect id="cell-9-5" x="155" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 10, row 6</title></rect>
+    <rect id="cell-9-6" x="155" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 10, row 7</title></rect>
+    <rect id="cell-10-0" x="168" y="52" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 11, row 1</title></rect>
+    <rect id="cell-10-1" x="168" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 11, row 2</title></rect>
+    <rect id="cell-10-2" x="168" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 11, row 3</title></rect>
+    <rect id="cell-10-3" x="168" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 11, row 4</title></rect>
+    <rect id="cell-10-4" x="168" y="104" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 11, row 5</title></rect>
+    <rect id="cell-10-5" x="168" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 11, row 6</title></rect>
+    <rect id="cell-10-6" x="168" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 11, row 7</title></rect>
+    <rect id="cell-11-0" x="181" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 12, row 1</title></rect>
+    <rect id="cell-11-1" x="181" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 12, row 2</title></rect>
+    <rect id="cell-11-2" x="181" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 12, row 3</title></rect>
+    <rect id="cell-11-3" x="181" y="91" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 12, row 4</title></rect>
+    <rect id="cell-11-4" x="181" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 12, row 5</title></rect>
+    <rect id="cell-11-5" x="181" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 12, row 6</title></rect>
+    <rect id="cell-11-6" x="181" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 12, row 7</title></rect>
+    <rect id="cell-12-0" x="194" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 13, row 1</title></rect>
+    <rect id="cell-12-1" x="194" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 13, row 2</title></rect>
+    <rect id="cell-12-2" x="194" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 13, row 3</title></rect>
+    <rect id="cell-12-3" x="194" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 13, row 4</title></rect>
+    <rect id="cell-12-4" x="194" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 13, row 5</title></rect>
+    <rect id="cell-12-5" x="194" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 13, row 6</title></rect>
+    <rect id="cell-12-6" x="194" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 13, row 7</title></rect>
+    <rect id="cell-13-0" x="207" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 14, row 1</title></rect>
+    <rect id="cell-13-1" x="207" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 14, row 2</title></rect>
+    <rect id="cell-13-2" x="207" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 14, row 3</title></rect>
+    <rect id="cell-13-3" x="207" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 14, row 4</title></rect>
+    <rect id="cell-13-4" x="207" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 14, row 5</title></rect>
+    <rect id="cell-13-5" x="207" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 14, row 6</title></rect>
+    <rect id="cell-13-6" x="207" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 14, row 7</title></rect>
+    <rect id="cell-14-0" x="220" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 15, row 1</title></rect>
+    <rect id="cell-14-1" x="220" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 15, row 2</title></rect>
+    <rect id="cell-14-2" x="220" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 15, row 3</title></rect>
+    <rect id="cell-14-3" x="220" y="91" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 15, row 4</title></rect>
+    <rect id="cell-14-4" x="220" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 15, row 5</title></rect>
+    <rect id="cell-14-5" x="220" y="117" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 15, row 6</title></rect>
+    <rect id="cell-14-6" x="220" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 15, row 7</title></rect>
+    <rect id="cell-15-0" x="233" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 16, row 1</title></rect>
+    <rect id="cell-15-1" x="233" y="65" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 16, row 2</title></rect>
+    <rect id="cell-15-2" x="233" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 16, row 3</title></rect>
+    <rect id="cell-15-3" x="233" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 16, row 4</title></rect>
+    <rect id="cell-15-4" x="233" y="104" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>22 contributions on col 16, row 5</title></rect>
+    <rect id="cell-15-5" x="233" y="117" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>13 contributions on col 16, row 6</title></rect>
+    <rect id="cell-15-6" x="233" y="130" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 16, row 7</title></rect>
+    <rect id="cell-16-0" x="246" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 17, row 1</title></rect>
+    <rect id="cell-16-1" x="246" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 17, row 2</title></rect>
+    <rect id="cell-16-2" x="246" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 17, row 3</title></rect>
+    <rect id="cell-16-3" x="246" y="91" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>13 contributions on col 17, row 4</title></rect>
+    <rect id="cell-16-4" x="246" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 17, row 5</title></rect>
+    <rect id="cell-16-5" x="246" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 17, row 6</title></rect>
+    <rect id="cell-16-6" x="246" y="130" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 17, row 7</title></rect>
+    <rect id="cell-17-0" x="259" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 18, row 1</title></rect>
+    <rect id="cell-17-1" x="259" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 18, row 2</title></rect>
+    <rect id="cell-17-2" x="259" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 18, row 3</title></rect>
+    <rect id="cell-17-3" x="259" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 18, row 4</title></rect>
+    <rect id="cell-17-4" x="259" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 18, row 5</title></rect>
+    <rect id="cell-17-5" x="259" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 18, row 6</title></rect>
+    <rect id="cell-17-6" x="259" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 18, row 7</title></rect>
+    <rect id="cell-18-0" x="272" y="52" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 19, row 1</title></rect>
+    <rect id="cell-18-1" x="272" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 19, row 2</title></rect>
+    <rect id="cell-18-2" x="272" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 19, row 3</title></rect>
+    <rect id="cell-18-3" x="272" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 19, row 4</title></rect>
+    <rect id="cell-18-4" x="272" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 19, row 5</title></rect>
+    <rect id="cell-18-5" x="272" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 19, row 6</title></rect>
+    <rect id="cell-18-6" x="272" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 19, row 7</title></rect>
+    <rect id="cell-19-0" x="285" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 20, row 1</title></rect>
+    <rect id="cell-19-1" x="285" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 20, row 2</title></rect>
+    <rect id="cell-19-2" x="285" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 20, row 3</title></rect>
+    <rect id="cell-19-3" x="285" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 20, row 4</title></rect>
+    <rect id="cell-19-4" x="285" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 20, row 5</title></rect>
+    <rect id="cell-19-5" x="285" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 20, row 6</title></rect>
+    <rect id="cell-19-6" x="285" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 20, row 7</title></rect>
+    <rect id="cell-20-0" x="298" y="52" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 21, row 1</title></rect>
+    <rect id="cell-20-1" x="298" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 21, row 2</title></rect>
+    <rect id="cell-20-2" x="298" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 21, row 3</title></rect>
+    <rect id="cell-20-3" x="298" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 21, row 4</title></rect>
+    <rect id="cell-20-4" x="298" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 21, row 5</title></rect>
+    <rect id="cell-20-5" x="298" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 21, row 6</title></rect>
+    <rect id="cell-20-6" x="298" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 21, row 7</title></rect>
+    <rect id="cell-21-0" x="311" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 22, row 1</title></rect>
+    <rect id="cell-21-1" x="311" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 22, row 2</title></rect>
+    <rect id="cell-21-2" x="311" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 22, row 3</title></rect>
+    <rect id="cell-21-3" x="311" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 22, row 4</title></rect>
+    <rect id="cell-21-4" x="311" y="104" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 22, row 5</title></rect>
+    <rect id="cell-21-5" x="311" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 22, row 6</title></rect>
+    <rect id="cell-21-6" x="311" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 22, row 7</title></rect>
+    <rect id="cell-22-0" x="324" y="52" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 23, row 1</title></rect>
+    <rect id="cell-22-1" x="324" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 23, row 2</title></rect>
+    <rect id="cell-22-2" x="324" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 23, row 3</title></rect>
+    <rect id="cell-22-3" x="324" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 23, row 4</title></rect>
+    <rect id="cell-22-4" x="324" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 23, row 5</title></rect>
+    <rect id="cell-22-5" x="324" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 23, row 6</title></rect>
+    <rect id="cell-22-6" x="324" y="130" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 23, row 7</title></rect>
+    <rect id="cell-23-0" x="337" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 24, row 1</title></rect>
+    <rect id="cell-23-1" x="337" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 24, row 2</title></rect>
+    <rect id="cell-23-2" x="337" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 24, row 3</title></rect>
+    <rect id="cell-23-3" x="337" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 24, row 4</title></rect>
+    <rect id="cell-23-4" x="337" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 24, row 5</title></rect>
+    <rect id="cell-23-5" x="337" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 24, row 6</title></rect>
+    <rect id="cell-23-6" x="337" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 24, row 7</title></rect>
+    <rect id="cell-24-0" x="350" y="52" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 25, row 1</title></rect>
+    <rect id="cell-24-1" x="350" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 25, row 2</title></rect>
+    <rect id="cell-24-2" x="350" y="78" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>22 contributions on col 25, row 3</title></rect>
+    <rect id="cell-24-3" x="350" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 25, row 4</title></rect>
+    <rect id="cell-24-4" x="350" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 25, row 5</title></rect>
+    <rect id="cell-24-5" x="350" y="117" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 25, row 6</title></rect>
+    <rect id="cell-24-6" x="350" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 25, row 7</title></rect>
+    <rect id="cell-25-0" x="363" y="52" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>22 contributions on col 26, row 1</title></rect>
+    <rect id="cell-25-1" x="363" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 26, row 2</title></rect>
+    <rect id="cell-25-2" x="363" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 26, row 3</title></rect>
+    <rect id="cell-25-3" x="363" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 26, row 4</title></rect>
+    <rect id="cell-25-4" x="363" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 26, row 5</title></rect>
+    <rect id="cell-25-5" x="363" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 26, row 6</title></rect>
+    <rect id="cell-25-6" x="363" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 26, row 7</title></rect>
+    <rect id="cell-26-0" x="376" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 27, row 1</title></rect>
+    <rect id="cell-26-1" x="376" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 27, row 2</title></rect>
+    <rect id="cell-26-2" x="376" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 27, row 3</title></rect>
+    <rect id="cell-26-3" x="376" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 27, row 4</title></rect>
+    <rect id="cell-26-4" x="376" y="104" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 27, row 5</title></rect>
+    <rect id="cell-26-5" x="376" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 27, row 6</title></rect>
+    <rect id="cell-26-6" x="376" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 27, row 7</title></rect>
+    <rect id="cell-27-0" x="389" y="52" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 28, row 1</title></rect>
+    <rect id="cell-27-1" x="389" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 28, row 2</title></rect>
+    <rect id="cell-27-2" x="389" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 28, row 3</title></rect>
+    <rect id="cell-27-3" x="389" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 28, row 4</title></rect>
+    <rect id="cell-27-4" x="389" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 28, row 5</title></rect>
+    <rect id="cell-27-5" x="389" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 28, row 6</title></rect>
+    <rect id="cell-27-6" x="389" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 28, row 7</title></rect>
+    <rect id="cell-28-0" x="402" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 29, row 1</title></rect>
+    <rect id="cell-28-1" x="402" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 29, row 2</title></rect>
+    <rect id="cell-28-2" x="402" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 29, row 3</title></rect>
+    <rect id="cell-28-3" x="402" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 29, row 4</title></rect>
+    <rect id="cell-28-4" x="402" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 29, row 5</title></rect>
+    <rect id="cell-28-5" x="402" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 29, row 6</title></rect>
+    <rect id="cell-28-6" x="402" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 29, row 7</title></rect>
+    <rect id="cell-29-0" x="415" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 30, row 1</title></rect>
+    <rect id="cell-29-1" x="415" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 30, row 2</title></rect>
+    <rect id="cell-29-2" x="415" y="78" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 30, row 3</title></rect>
+    <rect id="cell-29-3" x="415" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 30, row 4</title></rect>
+    <rect id="cell-29-4" x="415" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 30, row 5</title></rect>
+    <rect id="cell-29-5" x="415" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 30, row 6</title></rect>
+    <rect id="cell-29-6" x="415" y="130" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 30, row 7</title></rect>
+    <rect id="cell-30-0" x="428" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 31, row 1</title></rect>
+    <rect id="cell-30-1" x="428" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 31, row 2</title></rect>
+    <rect id="cell-30-2" x="428" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 31, row 3</title></rect>
+    <rect id="cell-30-3" x="428" y="91" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 31, row 4</title></rect>
+    <rect id="cell-30-4" x="428" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 31, row 5</title></rect>
+    <rect id="cell-30-5" x="428" y="117" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 31, row 6</title></rect>
+    <rect id="cell-30-6" x="428" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 31, row 7</title></rect>
+    <rect id="cell-31-0" x="441" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 32, row 1</title></rect>
+    <rect id="cell-31-1" x="441" y="65" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 32, row 2</title></rect>
+    <rect id="cell-31-2" x="441" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 32, row 3</title></rect>
+    <rect id="cell-31-3" x="441" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 32, row 4</title></rect>
+    <rect id="cell-31-4" x="441" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 32, row 5</title></rect>
+    <rect id="cell-31-5" x="441" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 32, row 6</title></rect>
+    <rect id="cell-31-6" x="441" y="130" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 32, row 7</title></rect>
+    <rect id="cell-32-0" x="454" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 33, row 1</title></rect>
+    <rect id="cell-32-1" x="454" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 33, row 2</title></rect>
+    <rect id="cell-32-2" x="454" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 33, row 3</title></rect>
+    <rect id="cell-32-3" x="454" y="91" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 33, row 4</title></rect>
+    <rect id="cell-32-4" x="454" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 33, row 5</title></rect>
+    <rect id="cell-32-5" x="454" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 33, row 6</title></rect>
+    <rect id="cell-32-6" x="454" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 33, row 7</title></rect>
+    <rect id="cell-33-0" x="467" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 34, row 1</title></rect>
+    <rect id="cell-33-1" x="467" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 34, row 2</title></rect>
+    <rect id="cell-33-2" x="467" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 34, row 3</title></rect>
+    <rect id="cell-33-3" x="467" y="91" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>22 contributions on col 34, row 4</title></rect>
+    <rect id="cell-33-4" x="467" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 34, row 5</title></rect>
+    <rect id="cell-33-5" x="467" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 34, row 6</title></rect>
+    <rect id="cell-33-6" x="467" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 34, row 7</title></rect>
+    <rect id="cell-34-0" x="480" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 35, row 1</title></rect>
+    <rect id="cell-34-1" x="480" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 35, row 2</title></rect>
+    <rect id="cell-34-2" x="480" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 35, row 3</title></rect>
+    <rect id="cell-34-3" x="480" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 35, row 4</title></rect>
+    <rect id="cell-34-4" x="480" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 35, row 5</title></rect>
+    <rect id="cell-34-5" x="480" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 35, row 6</title></rect>
+    <rect id="cell-34-6" x="480" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 35, row 7</title></rect>
+    <rect id="cell-35-0" x="493" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 36, row 1</title></rect>
+    <rect id="cell-35-1" x="493" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 36, row 2</title></rect>
+    <rect id="cell-35-2" x="493" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 36, row 3</title></rect>
+    <rect id="cell-35-3" x="493" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 36, row 4</title></rect>
+    <rect id="cell-35-4" x="493" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 36, row 5</title></rect>
+    <rect id="cell-35-5" x="493" y="117" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 36, row 6</title></rect>
+    <rect id="cell-35-6" x="493" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 36, row 7</title></rect>
+    <rect id="cell-36-0" x="506" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 37, row 1</title></rect>
+    <rect id="cell-36-1" x="506" y="65" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 37, row 2</title></rect>
+    <rect id="cell-36-2" x="506" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 37, row 3</title></rect>
+    <rect id="cell-36-3" x="506" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 37, row 4</title></rect>
+    <rect id="cell-36-4" x="506" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 37, row 5</title></rect>
+    <rect id="cell-36-5" x="506" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 37, row 6</title></rect>
+    <rect id="cell-36-6" x="506" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 37, row 7</title></rect>
+    <rect id="cell-37-0" x="519" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 38, row 1</title></rect>
+    <rect id="cell-37-1" x="519" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 38, row 2</title></rect>
+    <rect id="cell-37-2" x="519" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 38, row 3</title></rect>
+    <rect id="cell-37-3" x="519" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 38, row 4</title></rect>
+    <rect id="cell-37-4" x="519" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 38, row 5</title></rect>
+    <rect id="cell-37-5" x="519" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 38, row 6</title></rect>
+    <rect id="cell-37-6" x="519" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 38, row 7</title></rect>
+    <rect id="cell-38-0" x="532" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 39, row 1</title></rect>
+    <rect id="cell-38-1" x="532" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 39, row 2</title></rect>
+    <rect id="cell-38-2" x="532" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 39, row 3</title></rect>
+    <rect id="cell-38-3" x="532" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 39, row 4</title></rect>
+    <rect id="cell-38-4" x="532" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 39, row 5</title></rect>
+    <rect id="cell-38-5" x="532" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 39, row 6</title></rect>
+    <rect id="cell-38-6" x="532" y="130" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 39, row 7</title></rect>
+    <rect id="cell-39-0" x="545" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 40, row 1</title></rect>
+    <rect id="cell-39-1" x="545" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 40, row 2</title></rect>
+    <rect id="cell-39-2" x="545" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 40, row 3</title></rect>
+    <rect id="cell-39-3" x="545" y="91" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 40, row 4</title></rect>
+    <rect id="cell-39-4" x="545" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 40, row 5</title></rect>
+    <rect id="cell-39-5" x="545" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 40, row 6</title></rect>
+    <rect id="cell-39-6" x="545" y="130" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 40, row 7</title></rect>
+    <rect id="cell-40-0" x="558" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 41, row 1</title></rect>
+    <rect id="cell-40-1" x="558" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 41, row 2</title></rect>
+    <rect id="cell-40-2" x="558" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 41, row 3</title></rect>
+    <rect id="cell-40-3" x="558" y="91" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>13 contributions on col 41, row 4</title></rect>
+    <rect id="cell-40-4" x="558" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 41, row 5</title></rect>
+    <rect id="cell-40-5" x="558" y="117" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 41, row 6</title></rect>
+    <rect id="cell-40-6" x="558" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 41, row 7</title></rect>
+    <rect id="cell-41-0" x="571" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 42, row 1</title></rect>
+    <rect id="cell-41-1" x="571" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 42, row 2</title></rect>
+    <rect id="cell-41-2" x="571" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 42, row 3</title></rect>
+    <rect id="cell-41-3" x="571" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 42, row 4</title></rect>
+    <rect id="cell-41-4" x="571" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 42, row 5</title></rect>
+    <rect id="cell-41-5" x="571" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 42, row 6</title></rect>
+    <rect id="cell-41-6" x="571" y="130" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 42, row 7</title></rect>
+    <rect id="cell-42-0" x="584" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 43, row 1</title></rect>
+    <rect id="cell-42-1" x="584" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 43, row 2</title></rect>
+    <rect id="cell-42-2" x="584" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 43, row 3</title></rect>
+    <rect id="cell-42-3" x="584" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 43, row 4</title></rect>
+    <rect id="cell-42-4" x="584" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 43, row 5</title></rect>
+    <rect id="cell-42-5" x="584" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 43, row 6</title></rect>
+    <rect id="cell-42-6" x="584" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 43, row 7</title></rect>
+    <rect id="cell-43-0" x="597" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 44, row 1</title></rect>
+    <rect id="cell-43-1" x="597" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 44, row 2</title></rect>
+    <rect id="cell-43-2" x="597" y="78" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 44, row 3</title></rect>
+    <rect id="cell-43-3" x="597" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 44, row 4</title></rect>
+    <rect id="cell-43-4" x="597" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 44, row 5</title></rect>
+    <rect id="cell-43-5" x="597" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 44, row 6</title></rect>
+    <rect id="cell-43-6" x="597" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 44, row 7</title></rect>
+    <rect id="cell-44-0" x="610" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 45, row 1</title></rect>
+    <rect id="cell-44-1" x="610" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 45, row 2</title></rect>
+    <rect id="cell-44-2" x="610" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 45, row 3</title></rect>
+    <rect id="cell-44-3" x="610" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 45, row 4</title></rect>
+    <rect id="cell-44-4" x="610" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 45, row 5</title></rect>
+    <rect id="cell-44-5" x="610" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 45, row 6</title></rect>
+    <rect id="cell-44-6" x="610" y="130" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 45, row 7</title></rect>
+    <rect id="cell-45-0" x="623" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 46, row 1</title></rect>
+    <rect id="cell-45-1" x="623" y="65" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 46, row 2</title></rect>
+    <rect id="cell-45-2" x="623" y="78" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 46, row 3</title></rect>
+    <rect id="cell-45-3" x="623" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 46, row 4</title></rect>
+    <rect id="cell-45-4" x="623" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 46, row 5</title></rect>
+    <rect id="cell-45-5" x="623" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 46, row 6</title></rect>
+    <rect id="cell-45-6" x="623" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 46, row 7</title></rect>
+    <rect id="cell-46-0" x="636" y="52" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 47, row 1</title></rect>
+    <rect id="cell-46-1" x="636" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 47, row 2</title></rect>
+    <rect id="cell-46-2" x="636" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 47, row 3</title></rect>
+    <rect id="cell-46-3" x="636" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 47, row 4</title></rect>
+    <rect id="cell-46-4" x="636" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 47, row 5</title></rect>
+    <rect id="cell-46-5" x="636" y="117" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 47, row 6</title></rect>
+    <rect id="cell-46-6" x="636" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 47, row 7</title></rect>
+    <rect id="cell-47-0" x="649" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>6 contributions on col 48, row 1</title></rect>
+    <rect id="cell-47-1" x="649" y="65" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 48, row 2</title></rect>
+    <rect id="cell-47-2" x="649" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 48, row 3</title></rect>
+    <rect id="cell-47-3" x="649" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 48, row 4</title></rect>
+    <rect id="cell-47-4" x="649" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 48, row 5</title></rect>
+    <rect id="cell-47-5" x="649" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 48, row 6</title></rect>
+    <rect id="cell-47-6" x="649" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 48, row 7</title></rect>
+    <rect id="cell-48-0" x="662" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 49, row 1</title></rect>
+    <rect id="cell-48-1" x="662" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 49, row 2</title></rect>
+    <rect id="cell-48-2" x="662" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 49, row 3</title></rect>
+    <rect id="cell-48-3" x="662" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>5 contributions on col 49, row 4</title></rect>
+    <rect id="cell-48-4" x="662" y="104" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 49, row 5</title></rect>
+    <rect id="cell-48-5" x="662" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 49, row 6</title></rect>
+    <rect id="cell-48-6" x="662" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 49, row 7</title></rect>
+    <rect id="cell-49-0" x="675" y="52" width="10" height="10" rx="2" ry="2" fill="#39d353" class="cell"><title>23 contributions on col 50, row 1</title></rect>
+    <rect id="cell-49-1" x="675" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 50, row 2</title></rect>
+    <rect id="cell-49-2" x="675" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 50, row 3</title></rect>
+    <rect id="cell-49-3" x="675" y="91" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 50, row 4</title></rect>
+    <rect id="cell-49-4" x="675" y="104" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 50, row 5</title></rect>
+    <rect id="cell-49-5" x="675" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 50, row 6</title></rect>
+    <rect id="cell-49-6" x="675" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 50, row 7</title></rect>
+    <rect id="cell-50-0" x="688" y="52" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 51, row 1</title></rect>
+    <rect id="cell-50-1" x="688" y="65" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 51, row 2</title></rect>
+    <rect id="cell-50-2" x="688" y="78" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 51, row 3</title></rect>
+    <rect id="cell-50-3" x="688" y="91" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 51, row 4</title></rect>
+    <rect id="cell-50-4" x="688" y="104" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 51, row 5</title></rect>
+    <rect id="cell-50-5" x="688" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 51, row 6</title></rect>
+    <rect id="cell-50-6" x="688" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 51, row 7</title></rect>
+    <rect id="cell-51-0" x="701" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 52, row 1</title></rect>
+    <rect id="cell-51-1" x="701" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 52, row 2</title></rect>
+    <rect id="cell-51-2" x="701" y="78" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>2 contributions on col 52, row 3</title></rect>
+    <rect id="cell-51-3" x="701" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 52, row 4</title></rect>
+    <rect id="cell-51-4" x="701" y="104" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 52, row 5</title></rect>
+    <rect id="cell-51-5" x="701" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 52, row 6</title></rect>
+    <rect id="cell-51-6" x="701" y="130" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 52, row 7</title></rect>
+    <rect id="cell-52-0" x="714" y="52" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 53, row 1</title></rect>
+    <rect id="cell-52-1" x="714" y="65" width="10" height="10" rx="2" ry="2" fill="#2d333b" class="cell"><title>0 contributions on col 53, row 2</title></rect>
+    <rect id="cell-52-2" x="714" y="78" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 53, row 3</title></rect>
+    <rect id="cell-52-3" x="714" y="91" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 53, row 4</title></rect>
+    <rect id="cell-52-4" x="714" y="104" width="10" height="10" rx="2" ry="2" fill="#26a641" class="cell"><title>12 contributions on col 53, row 5</title></rect>
+    <rect id="cell-52-5" x="714" y="117" width="10" height="10" rx="2" ry="2" fill="#0e4429" class="cell"><title>1 contributions on col 53, row 6</title></rect>
+    <rect id="cell-52-6" x="714" y="130" width="10" height="10" rx="2" ry="2" fill="#006d32" class="cell"><title>7 contributions on col 53, row 7</title></rect>
   </g>
 
-  <!-- Day labels -->
-  <g font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="10" fill="#8b949e">
-    <text x="16" y="72">Mon</text>
-    <text x="16" y="96">Wed</text>
-    <text x="16" y="120">Fri</text>
+  <!-- Stage 1: Thinner 1-Column Precision Laser Scan Beam -->
+  <g id="startup-scan" clip-path="url(#graph-area-clip)">
+    <rect x="38" y="52" width="13" height="91" fill="url(#scan-beam)" filter="url(#scan-glow)">
+      <animate attributeName="x" values="38; 714; 714" dur="71.44s" keyTimes="0; 0.039; 1" calcMode="linear" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0; 1; 1; 0; 0" dur="71.44s" keyTimes="0; 0.01; 0.037; 0.039; 1" repeatCount="indefinite" />
+    </rect>
   </g>
 
-  <!-- Bottom left: "Learn how we count contributions" -->
-  <text x="52" y="150" fill="#8b949e" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="11" text-decoration="underline">Learn how we count contributions</text>
+  <!-- Stage 2: Animated Snake (Head + Body + Tail + 3 Fading Trail Segments) -->
+  <g id="snake-group" clip-path="url(#graph-area-clip)">
+    <!-- Snake trail-3 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#0e4429">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.066; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.1;0.1;0" keyTimes="0; 0.066; 0.071; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake trail-2 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#0e4429">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.064; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.25;0.25;0" keyTimes="0; 0.064; 0.069; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake trail-1 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#0e4429">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.062; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.45;0.45;0" keyTimes="0; 0.062; 0.067; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake tail -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#0e4429">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.059; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.85;0.85;0" keyTimes="0; 0.059; 0.064; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake body-8 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#006d32">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.057; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.9;0.9;0" keyTimes="0; 0.057; 0.062; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake body-7 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#006d32">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.055; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.92;0.92;0" keyTimes="0; 0.055; 0.060; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake body-6 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#26a641">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.053; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.95;0.95;0" keyTimes="0; 0.053; 0.058; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake body-5 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#26a641">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.050; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.95;0.95;0" keyTimes="0; 0.050; 0.055; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake body-4 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#26a641">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.048; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.98;0.98;0" keyTimes="0; 0.048; 0.053; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake body-3 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#26a641">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.046; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;0.98;0.98;0" keyTimes="0; 0.046; 0.051; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake body-2 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#39d353">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.044; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0; 0.044; 0.049; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
+    <!-- Snake body-1 -->
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#39d353">
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.041; 0.990; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0; 0.041; 0.046; 0.990; 1" dur="71.44s" repeatCount="indefinite" />
+    </rect>
 
-  <!-- Bottom right: "Less ■ ■ ■ ■ More" -->
-  <text x="568" y="150" fill="#8b949e" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="11">Less</text>
-  <rect x="606" y="143" width="10" height="10" rx="2" fill="#161b22"/>
-  <rect x="619" y="143" width="10" height="10" rx="2" fill="#0e4429"/>
-  <rect x="632" y="143" width="10" height="10" rx="2" fill="#006d32"/>
-  <rect x="645" y="143" width="10" height="10" rx="2" fill="#26a641"/>
-  <rect x="658" y="143" width="10" height="10" rx="2" fill="#39d353"/>
-  <text x="673" y="150" fill="#8b949e" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="11">More</text>
-
-  <!-- Contribution grid - 7 rows x 53 columns -->
-  <g id="grid">
-    <!-- Row 0 - Mon -->
-    <g id="row0">
-      <!-- Column 0-52 -->
-      <rect x="52" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="65" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="78" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="91" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="104" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="117" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="130" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="143" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="156" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="169" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="182" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="195" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="208" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="221" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="234" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="247" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="260" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="273" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="286" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="299" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="312" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="325" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="338" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="351" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="364" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="377" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="390" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="403" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="416" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="429" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="442" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="455" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="468" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="481" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="494" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="507" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="520" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="533" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="546" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="559" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="572" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="585" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="598" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="611" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="624" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="637" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="650" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="663" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="676" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-      <rect x="689" y="58" width="10" height="10" rx="2" fill="#161b22"/>
-    </g>
-  </g>
-
-  <!-- STAGE 1: Global Glow - Animation travels left to right -->
-  <g id="stage1" opacity="0">
-    <animate attributeName="opacity" values="0;0;1;1;0;0" dur="9.6s" repeatCount="indefinite" keyTimes="0;0.05;0.15;0.7;0.8;1"/>
-
-    <!-- Glow mask that moves left to right -->
-    <mask id="glowMask1">
-      <rect x="52" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="65" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <!-- Continue for all cells... -->
-      <rect x="78" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="91" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="104" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="117" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="130" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="143" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="156" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="169" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="182" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="195" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="208" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="221" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="234" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="247" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="260" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="273" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="286" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="299" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="312" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="325" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="338" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="351" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="364" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="377" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="390" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="403" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="416" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="429" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="442" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="455" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="468" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="481" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="494" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="507" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="520" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="533" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="546" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="559" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="572" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="585" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="598" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="611" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="624" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="637" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="650" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="663" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="676" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-      <rect x="689" y="58" width="10" height="10" fill="white" opacity="0">
-        <animate attributeName="x" values="52;702" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" keyTimes="0;0.1;0.8;0.95"/>
-      </rect>
-    </mask>
-
-    <!-- Glowing cells -->
-    <g mask="url(#glowMask1)" filter="url(#glow)">
-      <!-- All cells with green glow -->
-      <g fill="#39d353" opacity="0.7">
-        <animate attributeName="opacity" values="0.7;1;0.7" dur="1s" repeatCount="indefinite"/>
-        <!-- Generate all cells with positions -->
-        <rect x="52" y="58" width="10" height="10" rx="2"/>
-        <rect x="65" y="58" width="10" height="10" rx="2"/>
-        <rect x="78" y="58" width="10" height="10" rx="2"/>
-        <rect x="91" y="58" width="10" height="10" rx="2"/>
-        <rect x="104" y="58" width="10" height="10" rx="2"/>
-        <rect x="117" y="58" width="10" height="10" rx="2"/>
-        <rect x="130" y="58" width="10" height="10" rx="2"/>
-        <rect x="143" y="58" width="10" height="10" rx="2"/>
-        <rect x="156" y="58" width="10" height="10" rx="2"/>
-        <rect x="169" y="58" width="10" height="10" rx="2"/>
-        <rect x="182" y="58" width="10" height="10" rx="2"/>
-        <rect x="195" y="58" width="10" height="10" rx="2"/>
-        <rect x="208" y="58" width="10" height="10" rx="2"/>
-        <rect x="221" y="58" width="10" height="10" rx="2"/>
-        <rect x="234" y="58" width="10" height="10" rx="2"/>
-        <rect x="247" y="58" width="10" height="10" rx="2"/>
-        <rect x="260" y="58" width="10" height="10" rx="2"/>
-        <rect x="273" y="58" width="10" height="10" rx="2"/>
-        <rect x="286" y="58" width="10" height="10" rx="2"/>
-        <rect x="299" y="58" width="10" height="10" rx="2"/>
-        <rect x="312" y="58" width="10" height="10" rx="2"/>
-        <rect x="325" y="58" width="10" height="10" rx="2"/>
-        <rect x="338" y="58" width="10" height="10" rx="2"/>
-        <rect x="351" y="58" width="10" height="10" rx="2"/>
-        <rect x="364" y="58" width="10" height="10" rx="2"/>
-        <rect x="377" y="58" width="10" height="10" rx="2"/>
-        <rect x="390" y="58" width="10" height="10" rx="2"/>
-        <rect x="403" y="58" width="10" height="10" rx="2"/>
-        <rect x="416" y="58" width="10" height="10" rx="2"/>
-        <rect x="429" y="58" width="10" height="10" rx="2"/>
-        <rect x="442" y="58" width="10" height="10" rx="2"/>
-        <rect x="455" y="58" width="10" height="10" rx="2"/>
-        <rect x="468" y="58" width="10" height="10" rx="2"/>
-        <rect x="481" y="58" width="10" height="10" rx="2"/>
-        <rect x="494" y="58" width="10" height="10" rx="2"/>
-        <rect x="507" y="58" width="10" height="10" rx="2"/>
-        <rect x="520" y="58" width="10" height="10" rx="2"/>
-        <rect x="533" y="58" width="10" height="10" rx="2"/>
-        <rect x="546" y="58" width="10" height="10" rx="2"/>
-        <rect x="559" y="58" width="10" height="10" rx="2"/>
-        <rect x="572" y="58" width="10" height="10" rx="2"/>
-        <rect x="585" y="58" width="10" height="10" rx="2"/>
-        <rect x="598" y="58" width="10" height="10" rx="2"/>
-        <rect x="611" y="58" width="10" height="10" rx="2"/>
-        <rect x="624" y="58" width="10" height="10" rx="2"/>
-        <rect x="637" y="58" width="10" height="10" rx="2"/>
-        <rect x="650" y="58" width="10" height="10" rx="2"/>
-        <rect x="663" y="58" width="10" height="10" rx="2"/>
-        <rect x="676" y="58" width="10" height="10" rx="2"/>
-        <rect x="689" y="58" width="10" height="10" rx="2"/>
-      </g>
-    </g>
-  </g>
-
-  <!-- STAGE 2: Random Contributions -->
-  <g id="stage2" opacity="0">
-    <animate attributeName="opacity" values="0;0;0;1;1;0" dur="9.6s" repeatCount="indefinite" keyTimes="0;0.25;0.35;0.4;0.65;0.75"/>
-
-    <!-- Randomly animated cells with different intensities -->
+    <!-- Snake Head (#39d353) -->
     <g>
-      <!-- Level 1 - Light green -->
-      <g>
-        <rect x="65" y="58" width="10" height="10" rx="2" fill="#0e4429">
-          <animate attributeName="opacity" values="0;1;1;0" dur="1.2s" repeatCount="indefinite" keyTimes="0;0.2;0.8;1"/>
-        </rect>
-        <rect x="130" y="58" width="10" height="10" rx="2" fill="#0e4429">
-          <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" repeatCount="indefinite" keyTimes="0;0.1;0.9;1"/>
-        </rect>
-        <rect x="247" y="58" width="10" height="10" rx="2" fill="#0e4429">
-          <animate attributeName="opacity" values="0;1;1;0" dur="1.5s" repeatCount="indefinite" keyTimes="0;0.3;0.7;1"/>
-        </rect>
-        <rect x="364" y="58" width="10" height="10" rx="2" fill="#0e4429">
-          <animate attributeName="opacity" values="0;1;1;0" dur="1.1s" repeatCount="indefinite" keyTimes="0;0.15;0.85;1"/>
-        </rect>
-        <rect x="481" y="58" width="10" height="10" rx="2" fill="#0e4429">
-          <animate attributeName="opacity" values="0;1;1;0" dur="1.4s" repeatCount="indefinite" keyTimes="0;0.25;0.75;1"/>
-        </rect>
-        <rect x="598" y="58" width="10" height="10" rx="2" fill="#0e4429">
-          <animate attributeName="opacity" values="0;1;1;0" dur="0.8s" repeatCount="indefinite" keyTimes="0;0.1;0.9;1"/>
-        </rect>
-      </g>
-
-      <!-- Level 2 - Medium green -->
-      <g>
-        <rect x="78" y="70" width="10" height="10" rx="2" fill="#006d32">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.8s" repeatCount="indefinite" keyTimes="0;0.05;0.25;0.75;0.95;1"/>
-        </rect>
-        <rect x="169" y="70" width="10" height="10" rx="2" fill="#006d32">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.1s" repeatCount="indefinite" keyTimes="0;0.1;0.3;0.7;0.9;1"/>
-        </rect>
-        <rect x="299" y="70" width="10" height="10" rx="2" fill="#006d32">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.5s" repeatCount="indefinite" keyTimes="0;0.05;0.2;0.8;0.95;1"/>
-        </rect>
-        <rect x="416" y="70" width="10" height="10" rx="2" fill="#006d32">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.3s" repeatCount="indefinite" keyTimes="0;0.15;0.35;0.65;0.85;1"/>
-        </rect>
-        <rect x="533" y="70" width="10" height="10" rx="2" fill="#006d32">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.9s" repeatCount="indefinite" keyTimes="0;0.08;0.28;0.72;0.92;1"/>
-        </rect>
-        <rect x="650" y="70" width="10" height="10" rx="2" fill="#006d32">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.0s" repeatCount="indefinite" keyTimes="0;0.12;0.32;0.68;0.88;1"/>
-        </rect>
-      </g>
-
-      <!-- Level 3 - Bright green -->
-      <g>
-        <rect x="104" y="82" width="10" height="10" rx="2" fill="#26a641">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.4s" repeatCount="indefinite" keyTimes="0;0.05;0.2;0.8;0.95;1"/>
-        </rect>
-        <rect x="221" y="82" width="10" height="10" rx="2" fill="#26a641">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.7s" repeatCount="indefinite" keyTimes="0;0.1;0.3;0.7;0.9;1"/>
-        </rect>
-        <rect x="338" y="82" width="10" height="10" rx="2" fill="#26a641">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.2s" repeatCount="indefinite" keyTimes="0;0.15;0.35;0.65;0.85;1"/>
-        </rect>
-        <rect x="455" y="82" width="10" height="10" rx="2" fill="#26a641">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.6s" repeatCount="indefinite" keyTimes="0;0.08;0.28;0.72;0.92;1"/>
-        </rect>
-        <rect x="572" y="82" width="10" height="10" rx="2" fill="#26a641">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.4s" repeatCount="indefinite" keyTimes="0;0.12;0.32;0.68;0.88;1"/>
-        </rect>
-        <rect x="676" y="82" width="10" height="10" rx="2" fill="#26a641">
-          <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.3s" repeatCount="indefinite" keyTimes="0;0.05;0.25;0.75;0.95;1"/>
-        </rect>
-      </g>
-
-      <!-- Level 4 - Brightest green -->
-      <g>
-        <rect x="143" y="94" width="10" height="10" rx="2" fill="#39d353">
-          <animate attributeName="opacity" values="0;1;1;0" dur="0.8s" repeatCount="indefinite" keyTimes="0;0.1;0.9;1"/>
-        </rect>
-        <rect x="273" y="94" width="10" height="10" rx="2" fill="#39d353">
-          <animate attributeName="opacity" values="0;1;1;0" dur="1.1s" repeatCount="indefinite" keyTimes="0;0.2;0.8;1"/>
-        </rect>
-        <rect x="403" y="94" width="10" height="10" rx="2" fill="#39d353">
-          <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" repeatCount="indefinite" keyTimes="0;0.15;0.85;1"/>
-        </rect>
-        <rect x="520" y="94" width="10" height="10" rx="2" fill="#39d353">
-          <animate attributeName="opacity" values="0;1;1;0" dur="1.3s" repeatCount="indefinite" keyTimes="0;0.25;0.75;1"/>
-        </rect>
-        <rect x="611" y="94" width="10" height="10" rx="2" fill="#39d353">
-          <animate attributeName="opacity" values="0;1;1;0" dur="1.0s" repeatCount="indefinite" keyTimes="0;0.18;0.82;1"/>
-        </rect>
-        <rect x="689" y="94" width="10" height="10" rx="2" fill="#39d353">
-          <animate attributeName="opacity" values="0;1;1;0" dur="0.7s" repeatCount="indefinite" keyTimes="0;0.1;0.9;1"/>
-        </rect>
-      </g>
-
-      <!-- More random cells in row 0 -->
-      <rect x="91" y="58" width="10" height="10" rx="2" fill="#006d32">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.6s" repeatCount="indefinite" keyTimes="0;0.05;0.3;0.7;0.95;1"/>
+      <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#39d353" stroke="#ffffff" stroke-width="1.0" filter="url(#head-glow)">
+        <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0; 0.039; 0.044; 0.98; 1" dur="71.44s" repeatCount="indefinite" />
       </rect>
-      <rect x="208" y="58" width="10" height="10" rx="2" fill="#26a641">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.9s" repeatCount="indefinite" keyTimes="0;0.1;0.35;0.65;0.9;1"/>
-      </rect>
-      <rect x="325" y="58" width="10" height="10" rx="2" fill="#0e4429">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.0s" repeatCount="indefinite" keyTimes="0;0.08;0.25;0.75;0.92;1"/>
-      </rect>
-      <rect x="442" y="58" width="10" height="10" rx="2" fill="#39d353">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.3s" repeatCount="indefinite" keyTimes="0;0.05;0.2;0.8;0.95;1"/>
-      </rect>
-      <rect x="559" y="58" width="10" height="10" rx="2" fill="#006d32">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="2.2s" repeatCount="indefinite" keyTimes="0;0.15;0.4;0.6;0.85;1"/>
-      </rect>
-      <rect x="663" y="58" width="10" height="10" rx="2" fill="#26a641">
-        <animate attributeName="opacity" values="0;0;1;1;0;0" dur="1.7s" repeatCount="indefinite" keyTimes="0;0.12;0.32;0.68;0.88;1"/>
-      </rect>
+      <animateMotion dur="71.44s" repeatCount="indefinite" calcMode="linear" keyTimes="0; 0.039; 0.99; 1" keyPoints="0; 0; 1; 1">
+        <mpath href="#snake-path" />
+      </animateMotion>
     </g>
   </g>
 
-  <!-- STAGE 3: Snake Mode -->
-  <g id="stage3" opacity="0">
-    <animate attributeName="opacity" values="0;0;0;0;1;1;0" dur="9.6s" repeatCount="indefinite" keyTimes="0;0.65;0.7;0.75;0.8;0.9;0.95"/>
+  <!-- Footer Legend Section -->
+  <text x="38" y="163" class="gh-footer-link">Learn how we count contributions</text>
 
-    <!-- Snake head -->
-    <g>
-      <rect x="273" y="58" width="10" height="10" rx="2" fill="#39d353" filter="url(#softGlow)">
-        <animate attributeName="x" values="273;273;325;325;377;377;429;429;481;481;533;533;585;585;637;637;689;689;637;637;585;585;533;533;481;481;429;429;377;377;325;325;273;273" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
-      </rect>
-      <!-- Snake eyes -->
-      <circle r="1.5" fill="#0d1117">
-        <animate attributeName="cx" values="277;277;329;329;381;381;433;433;485;485;537;537;589;589;641;641;693;693;641;641;589;589;537;537;485;485;433;433;381;381;329;329;277;277" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="cy" values="60;72;72;84;84;96;96;84;84;72;72;60;60;72;72;84;84;96;96;84;84;72;72;60;60;72;72;84;84;96;96;84;84;72;72" dur="2.8s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="1.5" fill="#0d1117">
-        <animate attributeName="cx" values="281;281;333;333;385;385;437;437;489;489;541;541;593;593;645;645;697;697;645;645;593;593;541;541;489;489;437;437;385;385;333;333;281;281" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="cy" values="60;72;72;84;84;96;96;84;84;72;72;60;60;72;72;84;84;96;96;84;84;72;72;60;60;72;72;84;84;96;96;84;84;72;72" dur="2.8s" repeatCount="indefinite"/>
-      </circle>
-    </g>
-
-    <!-- Snake body segments with trailing effect -->
-    <g opacity="0.8">
-      <rect x="260" y="58" width="10" height="10" rx="2" fill="#26a641">
-        <animate attributeName="x" values="260;260;312;312;364;364;416;416;468;468;520;520;572;572;624;624;676;676;624;624;572;572;520;520;468;468;416;416;364;364;312;312;260;260" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
-      </rect>
-    </g>
-    <g opacity="0.6">
-      <rect x="247" y="58" width="10" height="10" rx="2" fill="#26a641">
-        <animate attributeName="x" values="247;247;299;299;351;351;403;403;455;455;507;507;559;559;611;611;663;663;611;611;559;559;507;507;455;455;403;403;351;351;299;299;247;247" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
-      </rect>
-    </g>
-    <g opacity="0.4">
-      <rect x="234" y="58" width="10" height="10" rx="2" fill="#006d32">
-        <animate attributeName="x" values="234;234;286;286;338;338;390;390;442;442;494;494;546;546;598;598;650;650;598;598;546;546;494;494;442;442;390;390;338;338;286;286;234;234" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
-      </rect>
-    </g>
-    <g opacity="0.2">
-      <rect x="221" y="58" width="10" height="10" rx="2" fill="#006d32">
-        <animate attributeName="x" values="221;221;273;273;325;325;377;377;429;429;481;481;533;533;585;585;637;637;585;585;533;533;481;481;429;429;377;377;325;325;273;273;221;221" dur="2.8s" repeatCount="indefinite"/>
-        <animate attributeName="y" values="58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70;58;58;70;70;82;82;94;94;82;82;70;70" dur="2.8s" repeatCount="indefinite"/>
-      </rect>
-    </g>
-
-    <!-- Food items that appear and pulse -->
-    <circle cx="585" cy="106" r="4" fill="#39d353" opacity="0.8">
-      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="0.8s" repeatCount="indefinite"/>
-      <animate attributeName="r" values="4;5;4" dur="0.8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="351" cy="106" r="4" fill="#39d353" opacity="0.6">
-      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.1s" repeatCount="indefinite"/>
-      <animate attributeName="r" values="4;5.5;4" dur="1.1s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="468" cy="58" r="4" fill="#39d353" opacity="0.7">
-      <animate attributeName="opacity" values="0.7;0.25;0.7" dur="0.9s" repeatCount="indefinite"/>
-      <animate attributeName="r" values="4;5;4" dur="0.9s" repeatCount="indefinite"/>
-    </circle>
+  <g id="legend" transform="translate(680, 153)">
+    <text x="-8" y="9" class="gh-text" text-anchor="end">Less</text>
+    <rect x="0" y="0" width="10" height="10" rx="2" fill="#2d333b" />
+    <rect x="13" y="0" width="10" height="10" rx="2" fill="#0e4429" />
+    <rect x="26" y="0" width="10" height="10" rx="2" fill="#006d32" />
+    <rect x="39" y="0" width="10" height="10" rx="2" fill="#26a641" />
+    <rect x="52" y="0" width="10" height="10" rx="2" fill="#39d353" />
+    <text x="68" y="9" class="gh-text">More</text>
   </g>
 </svg>
